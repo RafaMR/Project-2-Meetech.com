@@ -1,9 +1,17 @@
 'use strict';
 
 const { Router } = require('express');
-
+// const nodemailer = require('nodemailer');
 const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
+
+// const transporter = nodemailer.createTransport({
+//   service: 'Gmail',
+//   auth: {
+//     user: process.env.EMAIL_SENDER,
+//     pass: process.env.EMAIL_PASSWORD
+//   }
+// });
 
 const router = new Router();
 
@@ -24,8 +32,16 @@ router.post('/sign-up', (req, res, next) => {
     })
     .then((user) => {
       req.session.userId = user._id;
+      // return transporter.sendMail({
+      //   from: `"Meower" ${process.env.EMAIL_SENDER}`,
+      //   to: user.email,
+      //   subject: 'Welcome',
+      //   text: 'Welcome to the Meower'
+      // });
       res.redirect('/private');
     })
+    // .then(() => { res.redirect('/private');}
+    //  )
     .catch((error) => {
       next(error);
     });
