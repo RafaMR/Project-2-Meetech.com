@@ -20,7 +20,8 @@ const schema = new mongoose.Schema(
       type: String
     },
     description: {
-      type: String
+      type: String,
+      maxlength: 200
     },
     creator: {
       type: mongoose.Types.ObjectId,

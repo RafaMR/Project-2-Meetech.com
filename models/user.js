@@ -14,27 +14,24 @@ const schema = new mongoose.Schema({
     trim: true
   },
   passwordHashAndSalt: {
-    type: String
+    type: String,
+    required: true
   },
   picture: {
-    type: String,
-    required: false
+    type: String
   },
   city: {
     type: String,
     required: true
   },
   zipCode: {
-    type: String,
-    required: false
+    type: String
   },
   linkedIn: {
-    type: String,
-    required: false
+    type: String
   },
   jobTitle: {
-    type: String,
-    required: false
+    type: String
   }
 });
 
