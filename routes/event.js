@@ -18,25 +18,22 @@ eventRouter.post(
   routeGuard,
   fileUpload.single('picture'),
   (req, res, next) => {
-    const { name, type, date, description, location } = req.body;
-    // IF there is a picture,
-    // store the url in the picture variable
+    const { name, type, date, location, description } = req.body;
     let picture;
     if (req.file) {
       picture = req.file.path;
     }
-    // Call create method on Publication model
     Event.create({
-      picture,
       name,
       type,
       date,
-      description,
       location,
+      picture,
+      description,
       creator: req.user._id
     })
       .then(() => {
-        res.redirect('/');
+        res.redirect('event-single');
       })
       .catch((error) => {
         next(error);
@@ -45,7 +42,21 @@ eventRouter.post(
 );
 
 //GET - '/event/:id/edit' - Loads events from database, renders event edit page
-//
+eventRouter.get('/:id', (req, res, next) => {
+  const { id } = req.params;
+  Event.findById(id)
+    .populate('creator')
+    .then((event) => {
+      let userIsOwner =
+        req.user && String(req.user._id) === String(event.creator._id);
+      res.render('event-single', { event, userIsOwner });
+    })
+    .catch((error) => {
+      console.log(error);
+      next(new Error('PUBLICATION_NOT_FOUND'));
+    });
+});
+
 //POST - '/event/:id/edit' - Handles edit form submission.
 //POST - '/event/:id/delete' - Handles deletion.
 
