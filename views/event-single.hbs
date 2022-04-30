@@ -10,11 +10,18 @@
 
 <a href="/profile/{{event.creator._id}}">{{event.creator.name}}</a>
 
+<br />
+<br />
+
 {{#if userIsOwner}}
 
-  <a href="/event/{{event._id}}/edit" class="btn">Edit Meow</a>
+  <div>
+    <a href="/event/{{event._id}}/edit" class="btn">EDIT Event</a>
+  </div>
+  <br />
+  <br />
 
   <form method="POST" action="/event/{{event._id}}/delete">
-    <button>Delete Meow</button>
+    <button>Delete Event</button>
   </form>
 {{/if}}
