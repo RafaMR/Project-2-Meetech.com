@@ -41,6 +41,7 @@ profileRouter.post(
 
 profileRouter.get('/:id', (req, res, next) => {
   const { id } = req.params;
+  console.log(id);
   let user;
   User.findById(id)
     .then((userDocument) => {

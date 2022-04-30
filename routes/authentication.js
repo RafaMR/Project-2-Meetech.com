@@ -41,13 +41,14 @@ router.post('/sign-up', fileUpload.single('picture'), (req, res, next) => {
     })
     .then((user) => {
       req.session.userId = user._id;
+      const id = user._id;
       // return transporter.sendMail({
       //   from: `"Meower" ${process.env.EMAIL_SENDER}`,
       //   to: user.email,
       //   subject: 'Welcome',
       //   text: 'Welcome to the Meower'
       // });
-      res.redirect('/user-profile');
+      res.redirect(`/user-profile/${id}`);
     })
     // .then(() => { res.redirect('/private');}
     //  )

@@ -14,3 +14,5 @@ const schema = new mongoose.Schema({
 const Event = mongoose.model('RSVP', schema);
 
 module.exports = rsvp;
+
+
