@@ -1,0 +1,20 @@
+{{#if event.picture}}
+  <img src="{{event.picture}}" alt="{{event.description}}" />
+{{/if}}
+
+<p>{{event.description}}</p>
+
+<h1>HOLA THIS IS A TEST *************</h1>
+
+<br />
+
+<a href="/profile/{{event.creator._id}}">{{event.creator.name}}</a>
+
+{{#if userIsOwner}}
+
+  <a href="/event/{{event._id}}/edit" class="btn">Edit Meow</a>
+
+  <form method="POST" action="/event/{{event._id}}/delete">
+    <button>Delete Meow</button>
+  </form>
+{{/if}}

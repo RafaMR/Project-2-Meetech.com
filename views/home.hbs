@@ -1,2 +1,18 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
+{{#each event}}
+
+  <a href="/event/{{_id}}" class="publication-item">
+    {{#if picture}}
+      <img src="{{picture}}" />
+    {{/if}}
+    <div>
+      <p>{{event}}</p>
+      <small>{{date createdAt}}</small>
+      |
+      <small>{{creator.name}}</small>
+    </div>
+  </a>
+
+{{/each}}

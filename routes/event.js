@@ -33,7 +33,7 @@ eventRouter.post(
       creator: req.user._id
     })
       .then(() => {
-        res.redirect('event-single');
+        res.redirect('/');
       })
       .catch((error) => {
         next(error);
@@ -41,7 +41,7 @@ eventRouter.post(
   }
 );
 
-//GET - '/event/:id/edit' - Loads events from database, renders event edit page
+// GET - '/event/:id' - Loads event from database, renders single event page
 eventRouter.get('/:id', (req, res, next) => {
   const { id } = req.params;
   Event.findById(id)
@@ -53,11 +53,61 @@ eventRouter.get('/:id', (req, res, next) => {
     })
     .catch((error) => {
       console.log(error);
-      next(new Error('PUBLICATION_NOT_FOUND'));
+      next(new Error('EVENT_NOT_FOUND'));
+    });
+});
+
+//GET - '/event/:id/edit' - Loads events from database, renders event edit page
+eventRouter.get('/:id/edit', routeGuard, (req, res, next) => {
+  const { id } = req.params;
+  Event.findOne({ _id: id, creator: req.user._id })
+    .then((event) => {
+      if (!event) {
+        throw new Error('PUBLICATION_NOT_FOUND');
+      } else {
+        res.render('event-edit', { event });
+      }
+    })
+    .catch((error) => {
+      next(error);
     });
 });
 
 //POST - '/event/:id/edit' - Handles edit form submission.
+eventRouter.post(
+  '/:id/edit',
+  routeGuard,
+  fileUpload.single('picture'),
+  (req, res, next) => {
+    const { id } = req.params;
+    const { name, type, date, location, description } = req.body;
+    let picture;
+    if (req.file) {
+      picture = req.file.path;
+    }
+    Event.findOneAndUpdate(
+      { _id: id, creator: req.user._id },
+      { name, type, date, location, picture, description }
+    )
+      .then(() => {
+        res.redirect(`/event/${id}`);
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }
+);
 //POST - '/event/:id/delete' - Handles deletion.
+
+eventRouter.post('/:id/delete', routeGuard, (req, res, next) => {
+  const { id } = req.params;
+  Event.findOneAndDelete({ _id: id, creator: req.user._id })
+    .then(() => {
+      res.redirect('/');
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 
 module.exports = eventRouter;
