@@ -9,8 +9,8 @@
   <input
     id="event-name"
     type="text"
-    placeholder="User´s name"
-    name="event-name"
+    placeholder="Event´s name"
+    name="name"
     required
   />
 
@@ -19,7 +19,7 @@
     id="event-type"
     type="text"
     placeholder="Type of event"
-    name="event-type"
+    name="type"
     required
   />
 
@@ -28,15 +28,26 @@
     id="event-date"
     type="date"
     placeholder="Date of the event"
-    name="event-date"
+    name="date"
     required
   />
 
-  <label for="event-description">Message</label>
+  <label for="event-location"> Location</label>
+  <input
+    id="event-location"
+    type="text"
+    placeholder="Event´s name"
+    name="location"
+    required
+  />
+
+  <label for="event-description">Description of the event</label>
   <textarea
     id="event-description"
-    name="event-description"
     placeholder="Description of your event"
+    name="description"
   ></textarea>
+
+  <button>Create Event</button>
 
 </form>
