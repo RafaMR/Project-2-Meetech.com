@@ -97,6 +97,7 @@ eventRouter.post(
       });
   }
 );
+
 //POST - '/event/:id/delete' - Handles deletion.
 
 eventRouter.post('/:id/delete', routeGuard, (req, res, next) => {

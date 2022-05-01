@@ -1,0 +1,15 @@
+<a href="/event/{{_id}}" class="publication-item">
+  {{#if picture}}
+    <img src="{{picture}}" />
+  {{/if}}
+  <div>
+    <p>{{message}}</p>
+    <h3> THIS IS A TEST TOO CHECK PARTIALS WORKING</h3>
+
+    {{! If I use this tag and date fromat it brakes the app
+      <small>date createdAt</small>}}
+
+    <small>{{creator.name}}</small>
+
+  </div>
+</a>

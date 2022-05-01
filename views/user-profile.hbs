@@ -4,8 +4,12 @@
 
 {{!-- {{#if userIsOwner}}
 <a href="/user-profile/edit">Edit Profile</a>
-{{/if}}
+{{/if}} --}}
 
-{{#each publications}}
-{{> publication}}
-{{/each}} --}}
+
+{{!-- This was added by RAFA with the partials to show the events
+by the user on his profile --}}
+
+{{#each events}}
+{{> event_partial}}
+{{/each}}
