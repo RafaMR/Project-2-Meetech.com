@@ -44,13 +44,17 @@ profileRouter.get('/:id', (req, res, next) => {
   console.log(id);
   let user;
   User.findById(id)
-    .then((userDocument) => {
-      user = userDocument;
-      //   if (!user) {
-      //     throw new Error('PROFILE_NOT_FOUND');
-      //   } else {
-      res.render('user-profile');
-      //   }
+    .then((userInfo) => {
+      user = userInfo;
+      if (!user) {
+        throw new Error('PROFILE_NOT_FOUND');
+      } else {
+        return Event.find({ creator: id }).sort({ createdAt: -1 });
+      }
+    })
+    .then((events) => {
+      let userIsOwner = req.user && String(req.user._id) === id;
+      res.render('user-profile', { profile: user, events, userIsOwner });
     })
     .catch((error) => {
       console.log(error);
