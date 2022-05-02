@@ -3,8 +3,12 @@
 <h3>{{user.jobTitle}} based in {{user.city}}</h3>
 
 {{#if userIsOwner}}
-<a href="/user-profile/edit">Edit Profile</a>
+<a href="/user-profile/edit">Edit profile</a>
+<form method="POST" action="/user-profile/delete">
+    <button>Delete profile</button>
+  </form>
 {{/if}}
+
 
 
 {{!-- This was added by RAFA with the partials to show the events

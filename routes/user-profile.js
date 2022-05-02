@@ -62,26 +62,15 @@ profileRouter.get('/:id', (req, res, next) => {
     });
 });
 
-// profileRouter.get('/:id', (req, res, next) => {
-//   const { id } = req.params;
-//   let user;
-//   User.findById(id)
-//     .then((userDocument) => {
-//       user = userDocument;
-//       if (!user) {
-//         throw new Error('PROFILE_NOT_FOUND');
-//       } else {
-//         return Event.find({ creator: id }).sort({ createdAt: -1 });
-//       }
-//     })
-//     .then((events) => {
-//       let userIsOwner = req.user && String(req.user._id) === id;
-//       res.render('profile', { profile: user, publications, userIsOwner });
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//       next(new Error('PROFILE_NOT_FOUND'));
-//     });
-// });
+profileRouter.post('/delete', routeGuard, (req, res, next) => {
+  const id = req.user._id;
+  User.findByIdAndRemove(id)
+    .then(() => {
+      res.redirect('/');
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 
 module.exports = profileRouter;
