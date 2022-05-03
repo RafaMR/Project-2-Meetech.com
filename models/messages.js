@@ -2,27 +2,30 @@
 
 const mongoose = require('mongoose');
 
-const schema = new mongoose.Schema({
-  message: {
-    type: String,
-    required: true
+const schema = new mongoose.Schema(
+  {
+    message: {
+      type: String,
+      required: true
+    },
+    sender: {
+      type: mongoose.Types.ObjectId,
+      required: true
+    },
+    recipient: {
+      type: mongoose.Types.ObjectId,
+      required: true
+    },
+    createdAt: {
+      time: Date
+    },
+    updatedAt: {
+      time: Date
+    }
   },
-  sender: {
-    type: mongoose.Types.ObjectId,
-    required: true
-  },
-  recipient: {
-    type: mongoose.Types.ObjectId,
-    required: true
-  },
-  createdAt: {
-    time: timestamp
-  },
-  updatedAt: {
-    time: timestamp
-  }
-});
+  { timestamps: true }
+);
 
-const User = mongoose.model('messages', schema);
+const Messages = mongoose.model('Messages', schema);
 
-module.exports = messages;
+module.exports = Messages;
