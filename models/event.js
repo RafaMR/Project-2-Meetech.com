@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// const { ObjectId } = mongoose.Schema.Types;
 
 const eventSchema = new mongoose.Schema(
   {
@@ -33,8 +32,8 @@ const eventSchema = new mongoose.Schema(
       type: Number,
       required: true,
       default: 0
-    }
-    // attendees: [{ user: { type: mongoose.Types.ObjectId, ref: 'User' } }]
+    },
+    attendees: [{ type: mongoose.Types.ObjectId, ref: 'User' }]
     // following: [{ type: ObjectId, ref: 'User' }]
   },
   { timestamps: true }

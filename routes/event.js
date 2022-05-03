@@ -1,11 +1,12 @@
-const exppress = require('express');
+const express = require('express');
 const Event = require('./../models/event');
 const User = require('./../models/user');
 const Like = require('./../models/likes');
+const RSVP = require('./../models/rsvp');
 const routeGuard = require('./../middleware/route-guard');
 const fileUpload = require('./../middleware/file-upload');
 
-const eventRouter = new exppress.Router();
+const eventRouter = new express.Router();
 
 //GET - '/event/' - Renders random events?
 
@@ -142,13 +143,39 @@ eventRouter.post('/:id/like', routeGuard, (req, res, next) => {
 
 eventRouter.post('/:id/unlike', routeGuard, (req, res, next) => {
   const { id } = req.params;
-  Like.findOneAndDelete({ publication: id, user: req.user._id })
+  Like.findOneAndDelete({ event: id, user: req.user._id })
     .then(() => {
       return Like.count({ event: id });
     })
     .then((likeCount) => {
       console.log(likeCount);
       return Event.findByIdAndUpdate(id, { likeCount });
+    })
+    .then(() => {
+      res.redirect('/');
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+eventRouter.post('/:id/attend', routeGuard, (req, res, next) => {
+  const { id } = req.params;
+  RSVP.findOne({ event: id, user: req.user._id })
+    .then((isrsvp) => {
+      if (isrsvp) {
+        throw new Error('ALREADY_ATTENDING');
+      } else {
+        return RSVP.create({ event: id, user: req.user._id });
+      }
+    })
+    .then(() => {
+      return RSVP.find({ event: id });
+    })
+    .then((rsvps) => {
+      const attendees = rsvps.map((rsvp) => rsvp.user.id);
+      console.log(attendees);
+      return Event.findByIdAndUpdate(id, { attendees: attendees });
     })
     .then(() => {
       res.redirect('/');

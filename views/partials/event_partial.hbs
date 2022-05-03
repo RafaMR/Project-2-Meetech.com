@@ -1,11 +1,10 @@
 <div class="publication-item">
   <a href="/event/{{_id}}">
     {{#if picture}}
-      <img src="{{picture}}" />
+      <img src="{{picture}}" alt="{{description}}" />
     {{/if}}
     <div>
-      <p>{{description}}</p>
-      <h3> THIS IS A TEST TOO CHECK PARTIALS WORKING</h3>
+      <h3>{{name}}</h3>
 
       {{!-- <small>{{date createdAt}}</small> --}}
       <small>{{creator.name}}</small>
@@ -15,11 +14,11 @@
   <span>{{likeCount}}</span>
   {{#if liked}}
     <form method="POST" action="/event/{{_id}}/unlike">
-      <button>Liked</button>
+      <button>👎</button>
     </form>
   {{else}}
     <form method="POST" action="/event/{{_id}}/like">
-      <button>Like</button>
+      <button>👍</button>
     </form>
   {{/if}}
 
