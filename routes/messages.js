@@ -4,15 +4,37 @@ const routeGuard = require('./../middleware/route-guard');
 
 const messagesRouter = new exppress.Router();
 
+//LIST OF MESSAGES ROUTES
+//Get - messages: list of chats ✅
+//Get - messages: with one user ❌
+
+//Post - Start  new chat? ❌
+//Post - send a message within a chat ❌
+//Post - delete a message within a chat ❌
+
 //GET - '/messages/' - Renders list of conversations
 messagesRouter.get('/', (req, res) => {
+  //add a query to get all messages for a user
   res.render('messages');
 });
 
-//GET - '/messages/:recipient' - Look for a user to send a message
+//GET - '/messages/:recipient' - Views chat with a user
+messagesRouter.get('/:recipient', (req, res, next) => {
+  const { id } = req.params;
+  Message.findById(id)
+    .populate('recipient')
+    .then((chat) => {
+      //let userIsOwner = req.user && String(req.user._id) === String(event.creator._id);
+      res.render('messages-user', { chat, userIsOwner });
+    })
+    .catch((error) => {
+      console.log(error);
+      next(new Error('Chat not found'));
+    });
+});
 
-//POST - '/messages/new' - Handles new chat creation
-messagesRouter.post('/messages/new', routeGuard, (req, res, next) => {
+//POST - '/messages/new' - Handles new message creation
+messagesRouter.post('/new', routeGuard, (req, res, next) => {
   const { message, sender, recipient, createdAt, updatedAt } = req.body;
   Message.create({
     message,
@@ -22,26 +44,10 @@ messagesRouter.post('/messages/new', routeGuard, (req, res, next) => {
     updatedAt
   })
     .then(() => {
-      res.redirect('/messages/:recipient');
+      res.redirect('/:recipient');
     })
     .catch((error) => {
       next(error);
-    });
-});
-
-// GET - '/messages/:id' - Loads messages between two users
-messagesRouter.get('messages/:id', (req, res, next) => {
-  const { id } = req.params;
-  Message.findById(id)
-    .populate('recipient')
-    .then((chat) => {
-      let userIsOwner =
-        req.user && String(req.user._id) === String(event.creator._id);
-      res.render('messages-user', { chat, userIsOwner });
-    })
-    .catch((error) => {
-      console.log(error);
-      next(new Error('EVENT_NOT_FOUND'));
     });
 });
 
