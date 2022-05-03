@@ -7,12 +7,18 @@
 <br />
 
 <a href="/user-profile/{{event.creator._id}}">{{event.creator.name}}</a>
+{{#unless userIsAttending}}
+  <form method="POST" action="/event/{{event._id}}/attend"><button>I want to
+      attend</button></form>
+{{/unless}}
 
-<form method="POST" action="/event/{{event._id}}/attend"><button>I want to
-    attend</button></form>
-
-<p>Coming:</p>{{#each names}}
-  {{name}}.
+{{#if userIsAttending}}
+  <form method="POST" action="/event/{{event._id}}/unattend"><button>I don't
+      want to attend anymore</button></form>
+{{/if}}
+<p>Coming:</p>
+{{#each attendingUsers}}
+  {{this.user.name}}.
 {{/each}}
 
 <br />

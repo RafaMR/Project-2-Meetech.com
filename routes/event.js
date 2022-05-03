@@ -44,16 +44,56 @@ eventRouter.post(
   }
 );
 
+/*
 // GET - '/event/:id' - Loads event from database, renders single event page
 eventRouter.get('/:id', (req, res, next) => {
+  let attendingUsers;
   const { id } = req.params;
-  Event.findById(id)
-    .populate('creator')
-    // .findOne('attendees')
+  RSVP.find({ event: id })
+    .populate('user')
+    .then((attendances) => {
+      attendingUsers = attendances;
+      return Event.findById(id);
+    })
+    //.populate('creator')
     .then((event) => {
       let userIsOwner =
         req.user && String(req.user._id) === String(event.creator._id);
-      res.render('event-single', { event, userIsOwner });
+      res.render('event-single', { event, userIsOwner, attendingUsers });
+    })
+    .catch((error) => {
+      console.log(error);
+      next(new Error('EVENT_NOT_FOUND'));
+    });
+});
+*/
+
+eventRouter.get('/:id', (req, res, next) => {
+  let attendingUsers;
+  const { id } = req.params;
+  RSVP.find({ event: id })
+    .populate('user')
+    .then((attendances) => {
+      attendingUsers = attendances;
+      Event.findById(id)
+        .populate('creator')
+        .then((event) => {
+          let userIsOwner =
+            req.user && String(req.user._id) === String(event.creator._id);
+          console.log(attendingUsers);
+          const attendingUsersIds = attendingUsers.map((eachUser) => {
+            return String(eachUser.user._id);
+          });
+          console.log(attendingUsersIds);
+          let userIsAttending =
+            req.user && attendingUsersIds.includes(String(req.user._id));
+          res.render('event-single', {
+            event,
+            userIsOwner,
+            attendingUsers,
+            userIsAttending
+          });
+        });
     })
     .catch((error) => {
       console.log(error);
@@ -169,24 +209,10 @@ eventRouter.post('/:id/attend', routeGuard, (req, res, next) => {
         return RSVP.create({ event: id, user: req.user._id });
       }
     })
-    // .then(() => {
-    //   return RSVP.find({ event: id });
-    // })
     .then((result) => {
       // const attendees = rsvps.map((rsvp) => rsvp.user.id);
       // console.log(attendees);
-
-      return Event.findByIdAndUpdate(id, {
-        $push: {
-          attendees: result.user
-        }
-      });
-    })
-    .then(() => {
-      return Event.populate('attendees');
-    })
-    .then((names) => {
-      res.redirect('event-single', { names });
+      res.redirect(`/event/${id}`);
     })
     .catch((error) => {
       next(error);
