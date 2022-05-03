@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+// const { ObjectId } = mongoose.Schema.Types;
 
-const schema = new mongoose.Schema(
+const eventSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -28,17 +29,12 @@ const schema = new mongoose.Schema(
       required: true,
       ref: 'User'
     }
+    // attendees: [{ user: { type: mongoose.Types.ObjectId, ref: 'User' } }]
+    // following: [{ type: ObjectId, ref: 'User' }]
   },
   { timestamps: true }
 );
 
-// name of event: String, required
-// - type of event: conference, hackathon, coffee, workshops, job fair/fast interviews
-// - date of event
-// - location of event
-// - picture
-// - attendees
-
-const Event = mongoose.model('Event', schema);
+const Event = mongoose.model('Event', eventSchema);
 
 module.exports = Event;

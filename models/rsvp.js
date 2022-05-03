@@ -1,18 +1,20 @@
 const mongoose = require('mongoose');
+const User = require('./../models/user');
+const Event = require('./../models/event');
 
-const schema = new mongoose.Schema({
+const rsvpSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Types.ObjectId,
-    required: true
+    required: true,
+    ref: User
   },
   eventId: {
     type: mongoose.Types.ObjectId,
-    required: true
+    required: true,
+    ref: Event
   }
 });
 
-const Event = mongoose.model('RSVP', schema);
+const RSVP = mongoose.model('RSVP', rsvpSchema);
 
-module.exports = rsvp;
-
-
+module.exports = RSVP;

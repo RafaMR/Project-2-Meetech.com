@@ -5,7 +5,11 @@
 <p>{{event.description}}</p>
 
 <h1>HOLA THIS IS A TEST *************</h1>
-
+{{!-- <form method="POST" action="/event/{{event._id}}/attend"><button>I want to
+    attend</button></form>
+{{#each event.attendees}}
+  {{attendee}}
+{{/each}} --}}
 <br />
 
 <a href="/user-profile/{{event.creator._id}}">{{event.creator.name}}</a>
