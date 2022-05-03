@@ -28,6 +28,11 @@ const eventSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       required: true,
       ref: 'User'
+    },
+    likeCount: {
+      type: Number,
+      required: true,
+      default: 0
     }
     // attendees: [{ user: { type: mongoose.Types.ObjectId, ref: 'User' } }]
     // following: [{ type: ObjectId, ref: 'User' }]

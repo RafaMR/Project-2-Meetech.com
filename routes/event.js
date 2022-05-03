@@ -1,7 +1,7 @@
 const exppress = require('express');
 const Event = require('./../models/event');
 const User = require('./../models/user');
-const RSVP = require('./../models/rsvp');
+const Like = require('./../models/likes');
 const routeGuard = require('./../middleware/route-guard');
 const fileUpload = require('./../middleware/file-upload');
 
@@ -106,6 +106,50 @@ eventRouter.post(
 eventRouter.post('/:id/delete', routeGuard, (req, res, next) => {
   const { id } = req.params;
   Event.findOneAndDelete({ _id: id, creator: req.user._id })
+    .then(() => {
+      res.redirect('/');
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+eventRouter.post('/:id/like', routeGuard, (req, res, next) => {
+  const { id } = req.params;
+  Like.findOne({ event: id, user: req.user._id })
+    .then((like) => {
+      if (like) {
+        throw new Error('ALREADY_LIKED');
+      } else {
+        return Like.create({ event: id, user: req.user._id });
+      }
+    })
+
+    .then(() => {
+      return Like.count({ event: id });
+    })
+    .then((likeCount) => {
+      console.log(likeCount);
+      return Event.findByIdAndUpdate(id, { likeCount });
+    })
+    .then(() => {
+      res.redirect('/');
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+eventRouter.post('/:id/unlike', routeGuard, (req, res, next) => {
+  const { id } = req.params;
+  Like.findOneAndDelete({ publication: id, user: req.user._id })
+    .then(() => {
+      return Like.count({ event: id });
+    })
+    .then((likeCount) => {
+      console.log(likeCount);
+      return Event.findByIdAndUpdate(id, { likeCount });
+    })
     .then(() => {
       res.redirect('/');
     })

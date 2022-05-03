@@ -75,6 +75,10 @@ button,
   background-color: transparent;
 }
 
+button {
+  cursor: pointer;
+}
+
 textarea {
   min-height: 8em;
   resize: vertical;
