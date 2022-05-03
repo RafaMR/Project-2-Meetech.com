@@ -169,16 +169,24 @@ eventRouter.post('/:id/attend', routeGuard, (req, res, next) => {
         return RSVP.create({ event: id, user: req.user._id });
       }
     })
-    .then(() => {
-      return RSVP.find({ event: id });
+    // .then(() => {
+    //   return RSVP.find({ event: id });
+    // })
+    .then((result) => {
+      // const attendees = rsvps.map((rsvp) => rsvp.user.id);
+      // console.log(attendees);
+
+      return Event.findByIdAndUpdate(id, {
+        $push: {
+          attendees: result.user
+        }
+      });
     })
-    .then((rsvps) => {
-      const attendees = rsvps.map((rsvp) => rsvp.user.id);
-      console.log(attendees);
-      return Event.findByIdAndUpdate(id, { attendees: attendees });
-    })
     .then(() => {
-      res.redirect('/');
+      return Event.populate('attendees');
+    })
+    .then((names) => {
+      res.redirect('event-single', { names });
     })
     .catch((error) => {
       next(error);
