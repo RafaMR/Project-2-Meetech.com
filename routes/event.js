@@ -210,8 +210,17 @@ eventRouter.post('/:id/attend', routeGuard, (req, res, next) => {
       }
     })
     .then((result) => {
-      // const attendees = rsvps.map((rsvp) => rsvp.user.id);
-      // console.log(attendees);
+      res.redirect(`/event/${id}`);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+eventRouter.post('/:id/unattend', routeGuard, (req, res, next) => {
+  const { id } = req.params;
+  RSVP.findOneAndRemove({ event: id, user: req.user._id })
+    .then((result) => {
       res.redirect(`/event/${id}`);
     })
     .catch((error) => {

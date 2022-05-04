@@ -32,9 +32,8 @@ const eventSchema = new mongoose.Schema(
       type: Number,
       required: true,
       default: 0
-    },
-    attendees: [{ type: mongoose.Types.ObjectId, ref: 'User' }]
-    // following: [{ type: ObjectId, ref: 'User' }]
+    }
+    // attendees: [{ type: mongoose.Types.ObjectId, ref: 'User' }]
   },
   { timestamps: true }
 );
