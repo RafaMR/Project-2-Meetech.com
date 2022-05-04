@@ -1,1 +1,11 @@
 <h1>MESSAGES</h1>
+
+{{#each chat}}
+  {{#each this}}
+    {{#each participants}}
+      <li>
+        {{name}}
+      </li>
+    {{/each}}
+  {{/each}}
+{{/each}}

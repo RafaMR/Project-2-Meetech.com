@@ -21,6 +21,9 @@ const schema = new mongoose.Schema(
     },
     updatedAt: {
       time: Date
+    },
+    chatId: {
+      type: mongoose.Types.ObjectId
     }
   },
   { timestamps: true }
