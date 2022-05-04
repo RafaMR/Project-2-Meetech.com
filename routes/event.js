@@ -217,7 +217,7 @@ eventRouter.post('/:id/attend', routeGuard, (req, res, next) => {
     });
 });
 
-eventRouter.post('/:id/unattend', routeGuard, (req, res, next) => {
+eventRouter.post('/:id/notattend', routeGuard, (req, res, next) => {
   const { id } = req.params;
   RSVP.findOneAndRemove({ event: id, user: req.user._id })
     .then((result) => {
