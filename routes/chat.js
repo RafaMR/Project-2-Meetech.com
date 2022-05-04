@@ -11,6 +11,8 @@ chatRouter.get('/:id', (req, res) => {
   Chat.find({ participants: { $in: id } })
     .populate('participants')
     .then((chat) => {
+      //let people
+      //cond. statement, not equal to id
       // User.find() to get name and pass it to hbs along with chat
       res.render('messages', { chat });
     })
