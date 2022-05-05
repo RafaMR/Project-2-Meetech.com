@@ -155,6 +155,8 @@ eventRouter.post('/:id/delete', routeGuard, (req, res, next) => {
     });
 });
 
+// Create Like
+
 eventRouter.post('/:id/like', routeGuard, (req, res, next) => {
   const { id } = req.params;
   Like.findOne({ event: id, user: req.user._id })
@@ -181,6 +183,8 @@ eventRouter.post('/:id/like', routeGuard, (req, res, next) => {
     });
 });
 
+// Unlike
+
 eventRouter.post('/:id/unlike', routeGuard, (req, res, next) => {
   const { id } = req.params;
   Like.findOneAndDelete({ event: id, user: req.user._id })
@@ -198,6 +202,8 @@ eventRouter.post('/:id/unlike', routeGuard, (req, res, next) => {
       next(error);
     });
 });
+
+// Attend an event
 
 eventRouter.post('/:id/attend', routeGuard, (req, res, next) => {
   const { id } = req.params;
@@ -217,6 +223,8 @@ eventRouter.post('/:id/attend', routeGuard, (req, res, next) => {
     });
 });
 
+// Cancel attendance of an event
+
 eventRouter.post('/:id/notattend', routeGuard, (req, res, next) => {
   const { id } = req.params;
   RSVP.findOneAndRemove({ event: id, user: req.user._id })
@@ -227,59 +235,5 @@ eventRouter.post('/:id/notattend', routeGuard, (req, res, next) => {
       next(error);
     });
 });
-
-// eventRouter.post('/:id/attend', routeGuard, (req, res, next) => {
-//   const eventId = req.params.id;
-//   Event.findById(eventId)
-//     .then((event) => {
-// if (
-//   event.attendees.filter(
-//     (attendee) => attendee.user.toString() === req.user._id
-//   ).length > 0
-// ) {
-//   return res
-//     .status(400)
-//     .json({ alreadyfollow: 'You already followed the user' });
-// }
-//       return res
-//         .status(400)
-//         .json({
-//           filtered: event.attendees.filter((attendee) => attendee.user)
-//         });
-
-//       event.attendees.unshift(req.user._id);
-//       event
-//         .save()
-//         // .then((event) => res.render('event-single', { event }));
-//         .then((event) => res.json(event));
-//     })
-//     .catch((error) => {
-//       next(error);
-//     });
-// });
-
-// eventRouter.post('/:id/attend', routeGuard, (req, res, next) => {
-//   Event.findByIdAndUpdate(
-//     req.body.attendId,
-//     {
-//       $push: { attendees: req.user._id }
-//     },
-//     {
-//       new: true
-//     }
-//   )
-//     .then(() => {
-//       res.redirect('event-single');
-//     })
-//     .catch((error) => {
-//       next(error);
-//     });
-// });
-
-// User.findByIdAndUpdate(req.user._id,{
-//     $push:{following:req.body.followId}
-
-// },{new:true}).select("-password").then(result=>{
-//     res.json(result)
 
 module.exports = eventRouter;
