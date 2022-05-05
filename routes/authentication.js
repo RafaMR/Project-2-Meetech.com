@@ -1,10 +1,20 @@
 'use strict';
 
 const { Router } = require('express');
-// const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
 const fileUpload = require('./../middleware/file-upload');
+
+const transporter = nodemailer.createTransport({
+  name: 'example.com',
+  host: 'smtp.ethereal.email',
+  port: 587,
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD
+  }
+});
 
 // const transporter = nodemailer.createTransport({
 //   service: 'Gmail',
@@ -42,16 +52,17 @@ router.post('/sign-up', fileUpload.single('picture'), (req, res, next) => {
     .then((user) => {
       req.session.userId = user._id;
       const id = user._id;
-      // return transporter.sendMail({
-      //   from: `"Meower" ${process.env.EMAIL_SENDER}`,
-      //   to: user.email,
-      //   subject: 'Welcome',
-      //   text: 'Welcome to the Meower'
-      // });
-      res.redirect(`/user-profile/${id}`);
+      return transporter.sendMail({
+        from: `"Meetech" ${process.env.EMAIL}`,
+        to: user.email,
+        subject: 'Welcome',
+        text: 'Welcome to Meetech-app'
+      });
+      // res.redirect(`/user-profile/${id}`);
     })
-    // .then(() => { res.redirect('/private');}
-    //  )
+    .then(() => {
+      res.redirect('/');
+    })
     .catch((error) => {
       next(error);
     });
