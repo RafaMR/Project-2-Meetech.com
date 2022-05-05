@@ -5,7 +5,7 @@ const routeGuard = require('./../middleware/route-guard');
 const chatRouter = express.Router();
 
 //GET - '/chat' - Renders list of conversations
-chatRouter.get('/:id', (req, res) => {
+chatRouter.get('/:id', routeGuard, (req, res) => {
   const { id } = req.params;
 
   Chat.find({ participants: { $in: id } })
@@ -25,7 +25,8 @@ chatRouter.get('/:id', (req, res) => {
 //http://localhost:3000/chat/626d38ff06b763b6c030922e/62714888ea50d635181b12bc
 //POST - '/chat/new' - Creates a new chat
 chatRouter.post('/:id/:user', (req, res) => {
-  const { id, user } = req.params;
+  const { id } = req.params;
+  const { user } = req.body;
 
   Chat.create({ participants: [id, user] })
     .then((chat) => {
@@ -33,7 +34,7 @@ chatRouter.post('/:id/:user', (req, res) => {
     })
     .catch((error) => {
       console.log(error);
-      next(new Error('Chats not created'));
+      next(new Error('Chat not created: duplicated?'));
     });
 });
 

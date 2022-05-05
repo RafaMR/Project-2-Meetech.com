@@ -91,7 +91,8 @@ eventRouter.get('/:id', (req, res, next) => {
             event,
             userIsOwner,
             attendingUsers,
-            userIsAttending
+            userIsAttending,
+            loggedInUser: req.user
           });
         });
     })

@@ -2,6 +2,7 @@ const exppress = require('express');
 const Message = require('./../models/messages');
 const Chat = require('../models/chat');
 const routeGuard = require('./../middleware/route-guard');
+const User = require('../models/user');
 
 const messagesRouter = new exppress.Router();
 
@@ -12,6 +13,48 @@ const messagesRouter = new exppress.Router();
 //Post - send a message within a chat ❌
 //Post - delete a message within a chat ❌
 
+messagesRouter.get('/:recipientId/:senderId', routeGuard, (req, res, next) => {
+  const recipientId = req.params.recipientId;
+  const senderId = req.params.senderId;
+  let recipient;
+  let sender;
+
+  User.findById(recipientId)
+    .then((recipientIGot) => {
+      recipient = recipientIGot;
+      return User.findById(senderId);
+    })
+    .then((senderIGot) => {
+      sender = senderIGot;
+      return Message.find({ recipient: recipientId, sender: senderId });
+      //we need to include all the messages in which the current user is the recipient and the event creator is the sender as well. This can be done with the $or Mongoose operator, for which we need to check the syntax
+    })
+    .then((messagesIGot) => {
+      res.render('messages', { recipient, sender, messages: messagesIGot });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+messagesRouter.post('/:recipientId/:senderId', routeGuard, (req, res, next) => {
+  const recipientId = req.params.recipientId;
+  const senderId = req.params.senderId;
+  const messageContent = req.body.message;
+  const message = {
+    message: messageContent,
+    sender: senderId,
+    recipient: recipientId
+  };
+  Message.create(message)
+    .then(() => {
+      res.redirect(`/messages/${recipientId}/${senderId}`);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+/*
 messagesRouter.get('/', (req, res) => {
   res.render('messages');
 });
@@ -61,5 +104,5 @@ messagesRouter.post('/:id/delete', routeGuard, (req, res, next) => {
       next(error);
     });
 });
-
+*/
 module.exports = messagesRouter;

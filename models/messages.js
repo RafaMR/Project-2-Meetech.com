@@ -10,25 +10,24 @@ const schema = new mongoose.Schema(
     },
     sender: {
       type: mongoose.Types.ObjectId,
-      required: true
+      required: true,
+      ref: 'User'
     },
     recipient: {
       type: mongoose.Types.ObjectId,
-      required: true
+      required: true,
+      ref: 'User'
     },
     createdAt: {
       time: Date
     },
     updatedAt: {
       time: Date
-    },
-    chatId: {
-      type: mongoose.Types.ObjectId
     }
   },
   { timestamps: true }
 );
 
-const Messages = mongoose.model('Messages', schema);
+const Message = mongoose.model('Message', schema);
 
-module.exports = Messages;
+module.exports = Message;
