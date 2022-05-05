@@ -11,15 +11,12 @@ const messagesRouter = new exppress.Router();
 //Redirect to the get with myself and the other person
 
 messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
-  //const recipientId = req.params.recipientId;
   const senderId = req.params.senderId;
-  //let recipient;
   let sender;
   let recipient;
 
   User.findById(senderId)
     .then(() => {
-      //recipient = recipientIGot;
       return User.findById(senderId);
     })
     .then((senderIGot) => {
@@ -29,7 +26,13 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
       });
     })
     .then((messagesIGot) => {
-      res.render('messages', { recipient, sender, messages: messagesIGot });
+      // to-do: exclude my own id
+      // make a unique array
+      res.render('conversations', {
+        recipient,
+        sender,
+        messages: messagesIGot
+      });
     })
     .catch((error) => {
       next(error);
