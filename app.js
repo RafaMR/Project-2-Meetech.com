@@ -15,7 +15,6 @@ const authenticationRouter = require('./routes/authentication');
 const eventRouter = require('./routes/event');
 const messagesRouter = require('./routes/messages');
 const profileRouter = require('./routes/user-profile');
-const chatRouter = require('./routes/chat');
 const hbs = require('hbs');
 
 const app = express();
@@ -63,7 +62,6 @@ app.use('/authentication', authenticationRouter);
 app.use('/event', eventRouter);
 app.use('/user-profile', profileRouter);
 app.use('/messages', messagesRouter);
-app.use('/chat', chatRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

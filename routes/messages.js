@@ -1,17 +1,40 @@
 const exppress = require('express');
 const Message = require('./../models/messages');
-const Chat = require('../models/chat');
 const routeGuard = require('./../middleware/route-guard');
 const User = require('../models/user');
 
 const messagesRouter = new exppress.Router();
 
-//LIST OF MESSAGES ROUTES
-//Get - messages: list of chats ✅
-//Get - messages: with one user ❌
+// TEST TO GET ALL THE MESSAGES FROM/TO ME
+// Find all the NAMES in which my ID is either as sender or recipient
+//Create a unique array
+//Redirect to the get with myself and the other person
 
-//Post - send a message within a chat ❌
-//Post - delete a message within a chat ❌
+messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
+  //const recipientId = req.params.recipientId;
+  const senderId = req.params.senderId;
+  //let recipient;
+  let sender;
+  let recipient;
+
+  User.findById(senderId)
+    .then(() => {
+      //recipient = recipientIGot;
+      return User.findById(senderId);
+    })
+    .then((senderIGot) => {
+      sender = senderIGot;
+      return Message.find({
+        $or: [{ recipient: senderId }, { sender: senderId }]
+      });
+    })
+    .then((messagesIGot) => {
+      res.render('messages', { recipient, sender, messages: messagesIGot });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 
 messagesRouter.get('/:recipientId/:senderId', routeGuard, (req, res, next) => {
   const recipientId = req.params.recipientId;
@@ -26,7 +49,13 @@ messagesRouter.get('/:recipientId/:senderId', routeGuard, (req, res, next) => {
     })
     .then((senderIGot) => {
       sender = senderIGot;
-      return Message.find({ recipient: recipientId, sender: senderId });
+      return Message.find({
+        $or: [
+          { recipient: recipientId, sender: senderId },
+          { recipient: senderId, sender: recipientId }
+        ]
+      });
+
       //we need to include all the messages in which the current user is the recipient and the event creator is the sender as well. This can be done with the $or Mongoose operator, for which we need to check the syntax
     })
     .then((messagesIGot) => {
@@ -36,6 +65,8 @@ messagesRouter.get('/:recipientId/:senderId', routeGuard, (req, res, next) => {
       next(error);
     });
 });
+
+// Message validation failed: message: Path `message` is required.
 
 messagesRouter.post('/:recipientId/:senderId', routeGuard, (req, res, next) => {
   const recipientId = req.params.recipientId;
