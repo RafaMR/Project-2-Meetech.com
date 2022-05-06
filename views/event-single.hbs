@@ -36,10 +36,13 @@
   <form method="POST" action="/event/{{event._id}}/delete">
     <button>Delete event</button>
   </form>
+{{else}}
+  <a href="/messages/{{event.creator._id}}/{{loggedInUser._id}}">Send a message
+    to this event's creator</a>
 {{/if}}
 
-<a href="/messages/{{event.creator._id}}/{{loggedInUser._id}}">Send a message to
-  this event's creator</a>
+{{!-- <a href="/messages/{{event.creator._id}}/{{loggedInUser._id}}">Send a message to
+  this event's creator</a> --}}
 
 {{!  I do not understand why this was added on the Meow app}}
 {{! <script src="/scripts/meow-single-script.js"></script> }}
