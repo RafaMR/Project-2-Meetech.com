@@ -22,6 +22,11 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+// Format dates added by RAFA ******************
+hbs.registerHelper('date', (value) => {
+  return `${value.toLocaleDateString()}, ${value.toLocaleTimeString()}`;
+});
+
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 app.use(serveFavicon(path.join(__dirname, 'public/images', 'favicon.ico')));
