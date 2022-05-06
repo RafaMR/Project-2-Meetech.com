@@ -7,6 +7,8 @@
 
 <br />
 
+<a href="/user-profile/{{event.creator._id}}">{{event.creator.name}}</a>
+
 {{#if userIsAttending}}
   <form method="POST" action="/event/{{event._id}}/notattend"><button>I don't
       want to attend anymore</button></form>
@@ -37,7 +39,7 @@
 {{/if}}
 
 <a href="/messages/{{event.creator._id}}/{{loggedInUser._id}}">Send a message to
-  this user</a>
+  this event's creator</a>
 
 {{!  I do not understand why this was added on the Meow app}}
 {{! <script src="/scripts/meow-single-script.js"></script> }}

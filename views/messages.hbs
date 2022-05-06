@@ -1,6 +1,6 @@
 <h1>MESSAGES</h1>
 
-<form method="POST" action="/messages/{{recipient._id}}/{{sender._id}}"
+<form method="POST" action="/messages/{{recipient._id}}/{{sender._id}}">
 
   <label for="event-description">Create chat with {{recipient.name}}</label>
   <textarea
@@ -13,11 +13,12 @@
 
 </form>
 
-
 {{#each messages}}
-    <div class="messenger">
-        Message: {{this.message}} <br>
-    </div>
+  <div class="messenger">
+    {{this.sender.name}}:
+    {{this.message}}
+    <br />
+  </div>
 {{/each}}
 
 {{!-- {{#each chat}}

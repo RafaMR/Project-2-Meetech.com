@@ -10,34 +10,34 @@ const messagesRouter = new exppress.Router();
 //Create a unique array
 //Redirect to the get with myself and the other person
 
-messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
-  const senderId = req.params.senderId;
-  let sender;
-  let recipient;
+// messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
+//   const senderId = req.params.senderId;
+//   let sender;
+//   let recipient;
 
-  User.findById(senderId)
-    .then(() => {
-      return User.findById(senderId);
-    })
-    .then((senderIGot) => {
-      sender = senderIGot;
-      return Message.find({
-        $or: [{ recipient: senderId }, { sender: senderId }]
-      });
-    })
-    .then((messagesIGot) => {
-      // to-do: exclude my own id
-      // make a unique array
-      res.render('conversations', {
-        recipient,
-        sender,
-        messages: messagesIGot
-      });
-    })
-    .catch((error) => {
-      next(error);
-    });
-});
+//   User.findById(senderId)
+//     .then(() => {
+//       return User.findById(senderId);
+//     })
+//     .then((senderIGot) => {
+//       sender = senderIGot;
+//       return Message.find({
+//         $or: [{ recipient: senderId }, { sender: senderId }]
+//       });
+//     })
+//     .then((messagesIGot) => {
+//       // to-do: exclude my own id
+//       // make a unique array
+//       res.render('conversations', {
+//         recipient,
+//         sender,
+//         messages: messagesIGot
+//       });
+//     })
+//     .catch((error) => {
+//       next(error);
+//     });
+// });
 
 messagesRouter.get('/:recipientId/:senderId', routeGuard, (req, res, next) => {
   const recipientId = req.params.recipientId;
@@ -57,7 +57,7 @@ messagesRouter.get('/:recipientId/:senderId', routeGuard, (req, res, next) => {
           { recipient: recipientId, sender: senderId },
           { recipient: senderId, sender: recipientId }
         ]
-      });
+      }).populate('sender');
 
       //we need to include all the messages in which the current user is the recipient and the event creator is the sender as well. This can be done with the $or Mongoose operator, for which we need to check the syntax
     })
