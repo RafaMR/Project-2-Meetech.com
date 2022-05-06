@@ -54,7 +54,7 @@ profileRouter.get('/:id', (req, res, next) => {
     })
     .then((events) => {
       let userIsOwner = req.user && String(req.user._id) === id;
-      res.render('user-profile', { profile: user, events, userIsOwner });
+      res.render('user-profile', { user, events, userIsOwner });
     })
     .catch((error) => {
       console.log(error);
