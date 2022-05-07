@@ -5,11 +5,6 @@ const User = require('../models/user');
 
 const messagesRouter = new exppress.Router();
 
-// TEST TO GET ALL THE MESSAGES FROM/TO ME
-// Find all the NAMES in which my ID is either as sender or recipient
-//Create a unique array
-//Redirect to the get with myself and the other person
-
 messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
   const senderId = req.params.senderId;
   let sender;
@@ -25,33 +20,37 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
         .populate('recipient');
     })
     .then((senderIGot) => {
-      let newArray = [];
+      console.log(senderIGot);
+      let newArray = []; // [...{id: id, name: name, myself: myself}]
 
       for (let i = 0; i < senderIGot.length; i++) {
-        if (!newArray.includes(senderIGot[i].sender._id)) {
-          newArray.push({
-            id: senderIGot[i].sender._id,
-            name: senderIGot[i].sender.name,
-            myself: senderId
-          });
-        }
-        if (!newArray.includes(senderIGot[i].recipient._id)) {
-          newArray.push({
-            id: senderIGot[i].recipient._id,
+        //If I am the sender, attach de recipient (if it doesnt already exist on newArray)
+        if (String(senderIGot[i].sender._id) === senderId) {
+          const newUserRecipient = {
+            id: String(senderIGot[i].recipient._id),
             name: senderIGot[i].recipient.name,
             myself: senderId
-          });
+          };
+          if (!newArray.includes(newUserRecipient)) {
+            newArray.push(newUserRecipient);
+          }
+          //If I am the recipient, attach de sender (if it doesnt already exist on newArray)
+        } else if (String(senderIGot[i].recipient._id) === senderId) {
+          const newUserSender = {
+            id: String(senderIGot[i].sender._id),
+            name: senderIGot[i].sender.name,
+            myself: senderId
+          };
+          if (!newArray.includes(newUserSender)) {
+            newArray.push(newUserSender);
+          }
         }
-
-        const anotherOne = newArray.filter(
-          (objectWithIdAndName) => String(objectWithIdAndName.id) !== senderId
-        );
-
-        return anotherOne;
       }
+      const anotherOne = newArray;
+      console.log('another one ', anotherOne);
+      return anotherOne;
     })
     .then((anotherOne) => {
-      console.log('SENDER ID: ', senderId);
       res.render('conversations', {
         anotherOne
       });
