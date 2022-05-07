@@ -40,15 +40,18 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
             name: senderIGot[i].recipient.name
           });
         }
-        console.log(newArray);
 
-        //const theids = newArray.filter((theId) => theId[1] !== senderId);
-        return newArray;
+        const anotherOne = newArray.filter(
+          (objectWithIdAndName) => String(objectWithIdAndName.id) !== senderId
+        );
+
+        return anotherOne;
       }
     })
-    .then((newArray) => {
+    .then((anotherOne) => {
       res.render('conversations', {
-        newArray
+        anotherOne,
+        senderId: senderId
       });
     })
     .catch((error) => {
