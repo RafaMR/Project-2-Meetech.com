@@ -31,13 +31,15 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
         if (!newArray.includes(senderIGot[i].sender._id)) {
           newArray.push({
             id: senderIGot[i].sender._id,
-            name: senderIGot[i].sender.name
+            name: senderIGot[i].sender.name,
+            myself: senderId
           });
         }
         if (!newArray.includes(senderIGot[i].recipient._id)) {
           newArray.push({
             id: senderIGot[i].recipient._id,
-            name: senderIGot[i].recipient.name
+            name: senderIGot[i].recipient.name,
+            myself: senderId
           });
         }
 
@@ -49,9 +51,9 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
       }
     })
     .then((anotherOne) => {
+      console.log('SENDER ID: ', senderId);
       res.render('conversations', {
-        anotherOne,
-        senderId: senderId
+        anotherOne
       });
     })
     .catch((error) => {

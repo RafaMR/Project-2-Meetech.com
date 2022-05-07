@@ -1,7 +1,7 @@
 {{#each anotherOne}}
-
+  {{! anotherOne: {name: hola, id: hola, myself: id } }}
   <div class="messenger">
-    <a href="/messages/{{this.id}}/{{senderId}}" class="btn">Go to chat with
+    <a href="/messages/{{this.id}}/{{this.myself}}" class="btn">Go to chat with
       {{this.name}}</a>
     <br />
     <br />
