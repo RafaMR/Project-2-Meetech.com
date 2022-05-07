@@ -46,7 +46,12 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
           }
         }
       }
-      const anotherOne = newArray;
+
+      const anotherOne = newArray.filter(
+        (v, i, a) =>
+          a.findIndex((v2) => JSON.stringify(v2) === JSON.stringify(v)) === i
+      );
+
       console.log('another one ', anotherOne);
       return anotherOne;
     })
