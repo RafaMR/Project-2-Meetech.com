@@ -16,18 +16,19 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
   let recipient;
 
   User.findById(senderId)
-    .then(() => {
+    .then((senderId) => {
       return User.findById(senderId);
     })
     .then((senderIGot) => {
       sender = senderIGot;
       return Message.find({
         $or: [{ recipient: senderId }, { sender: senderId }]
-      });
+      })
+        .populate('sender')
+        .populate('recipient');
     })
+    .then(() => {})
     .then((messagesIGot) => {
-      // to-do: exclude my own id
-      // make a unique array
       res.render('conversations', {
         recipient,
         sender,

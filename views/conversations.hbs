@@ -1,10 +1,10 @@
 {{#each messages}}
   <div class="messenger">
-    Sender:
-    {{this.sender}}
+    <a
+      href="/messages/{{this.recipient._id}}/{{this.sender._id}}"
+      class="btn"
+    >Go to chat with {{this.recipient.name}}</a>
     <br />
-    Recipient:
-    {{this.recipient}}
     <br />
   </div>
 {{/each}}
