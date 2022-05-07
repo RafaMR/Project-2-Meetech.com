@@ -1,8 +1,12 @@
-<img src="{{user.picture}}" alt="{{user.name}}" />
-<h1>{{user.name}}</h1>
-<h3>{{user.jobTitle}} based in {{user.city}}</h3>
+<img src="{{visitedUser.picture}}" alt="{{visitedUser.name}}" />
+<h1>{{visitedUser.name}}</h1>
+<h3>{{visitedUser.jobTitle}} based in {{visitedUser.city}}</h3>
 
-<a href="/messages/{{user._id}}">Send a message</a>
+
+  <div class="messenger">
+    <a href="/messages/{{visitedUser._id}}/{{loggedUserId}}" class="btn">Send a message to {{visitedUser.name}}</a>
+  </div>
+ 
 
 {{#if userIsOwner}}
 <a href="/user-profile/edit">Edit profile</a>
@@ -14,6 +18,10 @@
 {{#each events}}
 {{> event_partial}}
 {{/each}}
+
+
+
+
 
 
 
