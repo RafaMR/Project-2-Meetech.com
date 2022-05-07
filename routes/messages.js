@@ -16,9 +16,6 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
   let recipient;
 
   User.findById(senderId)
-    .then((senderId) => {
-      return User.findById(senderId);
-    })
     .then((senderIGot) => {
       sender = senderIGot;
       return Message.find({
@@ -27,12 +24,31 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
         .populate('sender')
         .populate('recipient');
     })
-    .then((messagesIGot) => {
-      console.log(messagesIGot);
+    .then((senderIGot) => {
+      let newArray = [];
+
+      for (let i = 0; i < senderIGot.length; i++) {
+        if (!newArray.includes(senderIGot[i].sender._id)) {
+          newArray.push({
+            id: senderIGot[i].sender._id,
+            name: senderIGot[i].sender.name
+          });
+        }
+        if (!newArray.includes(senderIGot[i].recipient._id)) {
+          newArray.push({
+            id: senderIGot[i].recipient._id,
+            name: senderIGot[i].recipient.name
+          });
+        }
+        console.log(newArray);
+
+        //const theids = newArray.filter((theId) => theId[1] !== senderId);
+        return newArray;
+      }
+    })
+    .then((newArray) => {
       res.render('conversations', {
-        recipient,
-        sender,
-        messages: messagesIGot
+        newArray
       });
     })
     .catch((error) => {

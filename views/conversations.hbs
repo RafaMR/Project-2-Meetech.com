@@ -1,9 +1,9 @@
-{{#each messages}}
+{{#each newArray}}
+
   <div class="messenger">
-    <a
-      href="/messages/{{this.recipient._id}}/{{this.sender._id}}"
-      class="btn"
-    >Go to chat with {{this.recipient.name}}</a>
+    <a href="/messages/{{this.name._id}}/{{this.sender._id}}" class="btn">Go to
+      chat with
+      {{this.name}}</a>
     <br />
     <br />
   </div>
