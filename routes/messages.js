@@ -27,8 +27,8 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
         .populate('sender')
         .populate('recipient');
     })
-    .then(() => {})
     .then((messagesIGot) => {
+      console.log(messagesIGot);
       res.render('conversations', {
         recipient,
         sender,
