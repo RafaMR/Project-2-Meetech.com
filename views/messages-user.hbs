@@ -1,0 +1,7 @@
+{{#each messages}}
+  <div class="messenger">
+    <a href="/user-profile/{{this.sender._id}}">{{this.sender.name}}:</a>
+    {{this.message}}
+    <br />
+  </div>
+{{/each}}
