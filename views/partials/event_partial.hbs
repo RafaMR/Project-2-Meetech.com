@@ -1,26 +1,30 @@
-<div class="publication-item">
-  <a href="/event/{{_id}}">
-    {{#if picture}}
-      <img src="{{picture}}" alt="{{description}}" />
-    {{/if}}
-    <div>
-      <h3>{{name}}</h3>
+<div class="col-4 justify-content-between">
+  <div class="card" style="width: 20rem;">
 
-      <small>{{formatDate date}}</small>
-      |
-      <small>{{creator.name}}</small>
+    <a href="/event/{{_id}}">
+      {{#if picture}}
+        <img src="{{picture}}" class="card-img-top" alt="{{description}}" />
+      {{/if}}
+      <div class="card-body"></div>
+      <h5 class="card-title">{{name}}</h5>
+      <p class="card-text">
+        <small>{{formatDate date}}</small>
+        |
+        <small>{{creator.name}}</small></p>
+
+    </a>
+    <div class="likes">
+      <div><span>{{likeCount}}</span></div>
+      <div>{{#if liked}}
+          <form method="POST" action="/event/{{_id}}/unlike">
+            <button>👎</button>
+          </form>
+        {{else}}
+          <form method="POST" action="/event/{{_id}}/like">
+            <button>👍</button>
+          </form>
+        {{/if}}</div>
+
     </div>
-  </a>
-
-  <span>{{likeCount}}</span>
-  {{#if liked}}
-    <form method="POST" action="/event/{{_id}}/unlike">
-      <button>👎</button>
-    </form>
-  {{else}}
-    <form method="POST" action="/event/{{_id}}/like">
-      <button>👍</button>
-    </form>
-  {{/if}}
-
+  </div>
 </div>

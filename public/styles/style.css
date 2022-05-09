@@ -3,8 +3,7 @@
 }
 
 body {
-  max-width: 52em;
-  padding: 0 1em;
+  width: 100%;
   margin: 0 auto;
   font-family: sans-serif;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -17,12 +16,16 @@ a {
 }
 
 nav {
+  background-color: beige;
   display: flex;
+  padding: 0.5em 3em 0 3em;
 }
 
 nav a,
 nav button {
-  padding: 1em 0;
+  text-decoration: none;
+  color: burlywood;
+  padding: 0;
   border: 0;
 }
 
@@ -36,24 +39,37 @@ nav button:first-child {
   margin-right: auto;
 }
 
+nav a:hover {
+  text-decoration: none;
+  color: bisque;
+}
+
+nav button:hover {
+  text-decoration: none;
+  color: bisque;
+}
+
+.title {
+  background-color: burlywood;
+  color: beige;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 3em 0;
+}
+
+.title h1 {
+  font-size: 4em;
+}
+
 h1,
 h2,
 h3,
 p {
   margin: 0;
   line-height: inherit;
-}
-
-h1:not(:last-child),
-h2:not(:last-child),
-h3:not(:last-child),
-p:not(:last-child) {
-  margin-bottom: 1rem;
-}
-
-img {
-  width: 30%;
-  max-width: 30%;
 }
 
 form {
@@ -71,7 +87,6 @@ button,
   padding: 1em;
   border: 1px solid #e6e6e6;
   border-radius: 0;
-  margin-bottom: 1em;
   font: inherit;
   color: inherit;
   background-color: transparent;
@@ -90,21 +105,48 @@ label {
   margin-bottom: 0.5em;
 }
 
-.publication-item {
+.container {
+  max-width: 52em;
+  margin: 2em 5em;
+}
+
+.container a {
+  text-decoration: none;
+  color: gray;
+}
+
+.container a:hover {
+  color: #896052;
+}
+
+.col-4 {
+  padding: 0.5em 0;
+  border-radius: 0.8em;
+}
+
+.card button {
+  padding: 0;
+}
+
+.likes {
   display: flex;
-  align-items: center;
-  margin: 1em 0;
+  flex-direction: row;
+  flex-basis: 50%;
+  justify-content: center;
 }
 
-.publication-item p {
-  margin: 0;
+.likes div {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.publication-item img {
-  width: 6em;
-  height: 6em;
-  margin-right: 1em;
-  object-fit: cover;
+footer {
+  width: 100%;
+  background-color: beige;
+  color: burlywood;
+  font-size: 0.8em;
+  padding: 1.5em;
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,9 +1,12 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
 
-<h1> TEST *************</h1>
+{{!-- <p>Welcome to {{title}}</p> --}}
 
+<div class="title">
+    <h1>Welcome to Meetech</h1>
+<p>Find new events in IT</p>
+</div>
 
-{{#each events}}
+<div class="container"><div class="row">
+    {{#each events}}
 {{> event_partial}}
-{{/each}}
+{{/each}}</div></div>

@@ -10,8 +10,9 @@ $grey: hsl(0, 0, 90%);
 }
 
 body {
-  max-width: 52em;
-  padding: 0 1em;
+  width: 100%;
+  // max-width: 52em;
+  // padding: 0 1em;
   margin: 0 auto;
   font-family: sans-serif;
   font-family: $font-sans;
@@ -24,10 +25,14 @@ a {
 }
 
 nav {
+  background-color: beige;
   display: flex;
+  padding: 0.5em 3em 0 3em;
   a,
   button {
-    padding: 1em 0;
+    text-decoration: none;
+    color: burlywood;
+    padding: 0;
     border: 0;
     &:not(:last-child) {
       margin-right: 1em;
@@ -38,21 +43,45 @@ nav {
   }
 }
 
+nav a:hover {
+  text-decoration: none;
+  color: bisque;
+}
+
+nav button:hover {
+  text-decoration: none;
+  color: bisque;
+}
+
+.title {
+  background-color: burlywood;
+  color: beige;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 3em 0;
+  h1 {
+    font-size: 4em;
+  }
+}
+
 h1,
 h2,
 h3,
 p {
   margin: 0;
   line-height: inherit;
-  &:not(:last-child) {
-    margin-bottom: 1rem;
-  }
+  // &:not(:last-child) {
+  //   margin-bottom: 1rem;
+  // }
 }
 
-img {
-  width: 30%;
-  max-width: 30%;
-}
+// img {
+//   width: 30%;
+//   max-width: 30%;
+// }
 
 form {
   display: flex;
@@ -69,7 +98,7 @@ button,
   padding: 1em;
   border: 1px solid $grey;
   border-radius: 0;
-  margin-bottom: 1em;
+  // margin-bottom: 1em;
   font: inherit;
   color: inherit;
   background-color: transparent;
@@ -88,21 +117,78 @@ label {
   margin-bottom: 0.5em;
 }
 
-///////******* Added by Rafa *********/////
-
-.publication-item {
-  display: flex;
-  align-items: center;
-  margin: 1em 0;
-
-  p {
-    margin: 0;
-  }
-
-  img {
-    width: 6em;
-    height: 6em;
-    margin-right: 1em;
-    object-fit: cover;
+.container {
+  max-width: 52em;
+  margin: 2em 5em;
+  a {
+    text-decoration: none;
+    color: gray;
   }
 }
+
+.container a:hover {
+  color: rgb(137, 96, 82);
+}
+
+// .row {
+//   max-width: 52em;
+//   margin: 0 auto;
+
+// }
+
+.col-4 {
+  // display: flex;
+  // flex-direction: column;
+  // justify-items: center;
+  // justify-content: center;
+  // align-items: center;
+  padding: 0.5em 0;
+  border-radius: 0.8em;
+}
+
+.card button {
+  // border: 0ch;
+  padding: 0;
+}
+
+.likes {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 50%;
+  justify-content: center;
+  // justify-content: space-around;
+}
+
+.likes div {
+  display: flex;
+  flex-wrap: wrap;
+  // justify-items: center;
+}
+
+footer {
+  width: 100%;
+  background-color: beige;
+  color: burlywood;
+  font-size: 0.8em;
+  padding: 1.5em;
+  text-align: center;
+}
+
+///////******* Added by Rafa *********/////
+
+// .publication-item {
+//   display: flex;
+//   align-items: center;
+//   margin: 1em 0;
+
+//   p {
+//     margin: 0;
+//   }
+
+//   img {
+//     width: 6em;
+//     height: 6em;
+//     margin-right: 1em;
+//     object-fit: cover;
+//   }
+// }
