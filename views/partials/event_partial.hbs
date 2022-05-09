@@ -1,11 +1,15 @@
 <div class="col-4 justify-content-between">
-  <div class="card" style="width: 20rem;">
+  <div class="card h-100" style="width: 20rem;">
 
     <a href="/event/{{_id}}">
       {{#if picture}}
-        <img src="{{picture}}" class="card-img-top" alt="{{description}}" />
+        <img
+          src="{{picture}}"
+          class="card-img-top h-80"
+          alt="{{description}}"
+        />
       {{/if}}
-      <div class="card-body"></div>
+      <div class="card-body">
       <h5 class="card-title">{{name}}</h5>
       <p class="card-text">
         <small>{{formatDate date}}</small>
@@ -13,18 +17,19 @@
         <small>{{creator.name}}</small></p>
 
     </a>
+
     <div class="likes">
       <div><span>{{likeCount}}</span></div>
       <div>{{#if liked}}
           <form method="POST" action="/event/{{_id}}/unlike">
-            <button>👎</button>
+            <button>👍</button>
           </form>
         {{else}}
           <form method="POST" action="/event/{{_id}}/like">
             <button>👍</button>
           </form>
         {{/if}}</div>
-
+  </div>
     </div>
   </div>
 </div>

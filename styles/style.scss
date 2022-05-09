@@ -25,13 +25,14 @@ a {
 }
 
 nav {
-  background-color: beige;
+  background-color: rgb(239, 238, 234);
+  font-size: 1.5em;
   display: flex;
-  padding: 0.5em 3em 0 3em;
+  padding: 1em 3em 0em 3em;
   a,
   button {
     text-decoration: none;
-    color: burlywood;
+    color: rgb(164, 162, 167);
     padding: 0;
     border: 0;
     &:not(:last-child) {
@@ -45,25 +46,32 @@ nav {
 
 nav a:hover {
   text-decoration: none;
-  color: bisque;
+  color: rgb(0, 84, 82);
 }
-
 nav button:hover {
   text-decoration: none;
-  color: bisque;
+  color: rgb(0, 84, 82);
 }
 
 .title {
-  background-color: burlywood;
+  background-image: url('../images/meetech (2).png');
   color: beige;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: fixed;
+  height: 500px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 3em 0;
+  padding: 5em 0;
   h1 {
-    font-size: 4em;
+    font-size: 5em;
+  }
+  p {
+    font-size: 2em;
   }
 }
 
@@ -86,6 +94,8 @@ p {
 form {
   display: flex;
   flex-direction: column;
+  padding: 1em;
+  max-width: 60%;
 }
 
 input:not([type='checkbox']),
@@ -137,6 +147,7 @@ label {
 // }
 
 .col-4 {
+  //border: 5px solid rgb(239, 238, 234);
   // display: flex;
   // flex-direction: column;
   // justify-items: center;
@@ -147,29 +158,38 @@ label {
 }
 
 .card button {
-  // border: 0ch;
+  border: 0ch;
   padding: 0;
+}
+
+.card-body {
+  padding: 5em;
+}
+.card img {
+  width: 20em;
+  height: 20em;
+  margin-right: 1em;
+  object-fit: cover;
 }
 
 .likes {
   display: flex;
   flex-direction: row;
   flex-basis: 50%;
-  justify-content: center;
-  // justify-content: space-around;
+  justify-content: flex-end;
 }
 
 .likes div {
   display: flex;
   flex-wrap: wrap;
-  // justify-items: center;
+  margin-left: 0.5em;
 }
 
 footer {
   width: 100%;
-  background-color: beige;
-  color: burlywood;
-  font-size: 0.8em;
+  background-color: rgb(0, 84, 82);
+  color: rgb(239, 238, 234);
+  font-size: 1.5em;
   padding: 1.5em;
   text-align: center;
 }
@@ -184,11 +204,3 @@ footer {
 //   p {
 //     margin: 0;
 //   }
-
-//   img {
-//     width: 6em;
-//     height: 6em;
-//     margin-right: 1em;
-//     object-fit: cover;
-//   }
-// }

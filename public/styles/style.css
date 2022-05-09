@@ -16,15 +16,16 @@ a {
 }
 
 nav {
-  background-color: beige;
+  background-color: #efeeea;
+  font-size: 1.5em;
   display: flex;
-  padding: 0.5em 3em 0 3em;
+  padding: 1em 3em 0em 3em;
 }
 
 nav a,
 nav button {
   text-decoration: none;
-  color: burlywood;
+  color: #a4a2a7;
   padding: 0;
   border: 0;
 }
@@ -41,27 +42,36 @@ nav button:first-child {
 
 nav a:hover {
   text-decoration: none;
-  color: bisque;
+  color: #005452;
 }
 
 nav button:hover {
   text-decoration: none;
-  color: bisque;
+  color: #005452;
 }
 
 .title {
-  background-color: burlywood;
+  background-image: url("../images/meetech (2).png");
   color: beige;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: fixed;
+  height: 500px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 3em 0;
+  padding: 5em 0;
 }
 
 .title h1 {
-  font-size: 4em;
+  font-size: 5em;
+}
+
+.title p {
+  font-size: 2em;
 }
 
 h1,
@@ -75,6 +85,8 @@ p {
 form {
   display: flex;
   flex-direction: column;
+  padding: 1em;
+  max-width: 60%;
 }
 
 input:not([type='checkbox']),
@@ -125,26 +137,39 @@ label {
 }
 
 .card button {
+  border: 0ch;
   padding: 0;
+}
+
+.card-body {
+  padding: 5em;
+}
+
+.card img {
+  width: 20em;
+  height: 20em;
+  margin-right: 1em;
+  object-fit: cover;
 }
 
 .likes {
   display: flex;
   flex-direction: row;
   flex-basis: 50%;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .likes div {
   display: flex;
   flex-wrap: wrap;
+  margin-left: 0.5em;
 }
 
 footer {
   width: 100%;
-  background-color: beige;
-  color: burlywood;
-  font-size: 0.8em;
+  background-color: #005452;
+  color: #efeeea;
+  font-size: 1.5em;
   padding: 1.5em;
   text-align: center;
 }
