@@ -16,7 +16,7 @@
   </head>
   <body>
     <nav>
-      <a href="/">Home</a>
+      <a href="/">HOME</a>
       {{#if user}}
         <a href="/event/create">Create an event</a>
         <a href="/messages/{{user._id}}">Messages</a>
@@ -25,8 +25,8 @@
           <button>Sign Out</button>
         </form>
       {{else}}
-        <a href="/authentication/sign-in">Sign In</a>
-        <a href="/authentication/sign-up">Sign Up</a>
+        <a id="signin" href="/authentication/sign-in">Sign in</a>
+        <a id="signup" href="/authentication/sign-up">Sign up</a>
       {{/if}}
     </nav>
     {{{body}}}

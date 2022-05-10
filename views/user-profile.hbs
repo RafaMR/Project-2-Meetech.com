@@ -1,23 +1,30 @@
-<img src="{{visitedUser.picture}}" alt="{{visitedUser.name}}" />
-<h1>{{visitedUser.name}}</h1>
-<h3>{{visitedUser.jobTitle}} based in {{visitedUser.city}}</h3>
+<div class="user-profile">
+<div class="user-maininfo"><div><img src="{{visitedUser.picture}}" alt="{{visitedUser.name}}" /></div>
+<div class="user-name"><h1>{{visitedUser.name}}</h1>
+<h4>{{visitedUser.jobTitle}} based in {{visitedUser.city}}</h4></div></div>
+
+<hr>
 
 
   <div class="messenger">
     <a href="/messages/{{visitedUser._id}}/{{loggedUserId}}" class="btn">Send a message to {{visitedUser.name}}</a>
   </div>
  
-
+<div class="user-options">
 {{#if userIsOwner}}
 <a href="/user-profile/edit">Edit profile</a>
 <form method="POST" action="/user-profile/delete">
     <button>Delete profile</button>
   </form>
 {{/if}}
+</div>
+</div>
 
+<div class="container"><div class="row">
 {{#each events}}
 {{> event_partial}}
 {{/each}}
+</div></div>
 
 
 

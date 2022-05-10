@@ -44,7 +44,12 @@ nav {
   }
 }
 
-nav a:hover {
+nav #signin,
+#signup {
+  padding-bottom: 1em;
+}
+
+nav nav a:hover {
   text-decoration: none;
   color: rgb(0, 84, 82);
 }
@@ -99,8 +104,24 @@ form {
 }
 
 .form1,
-.form2 {
+.form2,
+.form3,
+.form4 {
   margin: 0 auto;
+  font-size: 1.5em;
+  label,
+  input,
+  button {
+    margin: 0.5em 0;
+  }
+  button {
+    max-width: 7em;
+    margin: 0 auto;
+    margin-top: 1em;
+    background-color: rgb(0, 84, 82);
+    color: rgb(239, 238, 234);
+    border-radius: 0.8em;
+  }
 }
 
 input:not([type='checkbox']),
@@ -211,12 +232,11 @@ footer {
 //   }
 
 .create-form,
-.edit-profile {
+.edit-profile,
+.signin,
+.signup {
   padding: 2em 0;
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-items: center;
-  //   align-items: center;
+  line-height: 1.8em;
 }
 
 .create-form h1,
@@ -224,3 +244,75 @@ footer {
   color: rgb(0, 84, 82);
   text-align: center;
 }
+
+.user-profile {
+  padding: 2em;
+}
+
+.user-profile h1 {
+  color: rgb(0, 84, 82);
+}
+
+.messenger a {
+  font-size: 1.5em;
+  padding-left: 0em;
+}
+
+.messenger a:hover {
+  color: rgb(0, 84, 82);
+}
+
+.user-options {
+  display: flex;
+  flex-direction: row;
+  justify-items: baseline;
+}
+
+.user-options button {
+  border: 0ch;
+  margin: 0;
+  padding: 0;
+  margin-left: 1em;
+  font-size: 1.5em;
+}
+
+.user-options a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5em;
+}
+
+.user-options button:hover {
+  color: rgb(0, 84, 82);
+}
+
+.user-options a:hover {
+  color: rgb(0, 84, 82);
+}
+
+.user-maininfo {
+  display: flex;
+  flex-direction: row;
+  justify-items: auto;
+  padding-left: 1em;
+  img {
+    size: 20%;
+  }
+}
+
+.user-name {
+  margin-left: 1em;
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  margin: 0 auto;
+}
+
+// hr {
+//   flex-grow: 1;
+//   width: 100%;
+//   margin: 20px 0;
+// }

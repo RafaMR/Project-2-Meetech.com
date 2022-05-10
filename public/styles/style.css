@@ -40,7 +40,12 @@ nav button:first-child {
   margin-right: auto;
 }
 
-nav a:hover {
+nav #signin,
+#signup {
+  padding-bottom: 1em;
+}
+
+nav nav a:hover {
   text-decoration: none;
   color: #005452;
 }
@@ -89,8 +94,38 @@ form {
 }
 
 .form1,
-.form2 {
+.form2,
+.form3,
+.form4 {
   margin: 0 auto;
+  font-size: 1.5em;
+}
+
+.form1 label,
+.form1 input,
+.form1 button,
+.form2 label,
+.form2 input,
+.form2 button,
+.form3 label,
+.form3 input,
+.form3 button,
+.form4 label,
+.form4 input,
+.form4 button {
+  margin: 0.5em 0;
+}
+
+.form1 button,
+.form2 button,
+.form3 button,
+.form4 button {
+  max-width: 7em;
+  margin: 0 auto;
+  margin-top: 1em;
+  background-color: #005452;
+  color: #efeeea;
+  border-radius: 0.8em;
 }
 
 input:not([type='checkbox']),
@@ -179,14 +214,84 @@ footer {
 }
 
 .create-form,
-.edit-profile {
+.edit-profile,
+.signin,
+.signup {
   padding: 2em 0;
+  line-height: 1.8em;
 }
 
 .create-form h1,
 .edit-profile h1 {
   color: #005452;
   text-align: center;
+}
+
+.user-profile {
+  padding: 2em;
+}
+
+.user-profile h1 {
+  color: #005452;
+}
+
+.messenger a {
+  font-size: 1.5em;
+  padding-left: 0em;
+}
+
+.messenger a:hover {
+  color: #005452;
+}
+
+.user-options {
+  display: flex;
+  flex-direction: row;
+  justify-items: baseline;
+}
+
+.user-options button {
+  border: 0ch;
+  margin: 0;
+  padding: 0;
+  margin-left: 1em;
+  font-size: 1.5em;
+}
+
+.user-options a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5em;
+}
+
+.user-options button:hover {
+  color: #005452;
+}
+
+.user-options a:hover {
+  color: #005452;
+}
+
+.user-maininfo {
+  display: flex;
+  flex-direction: row;
+  justify-items: auto;
+  padding-left: 1em;
+}
+
+.user-maininfo img {
+  size: 20%;
+}
+
+.user-name {
+  margin-left: 1em;
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  margin: 0 auto;
 }
 
 /*# sourceMappingURL=style.css.map */
