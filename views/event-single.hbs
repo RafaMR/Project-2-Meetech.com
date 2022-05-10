@@ -1,42 +1,45 @@
-{{#if event.picture}}
-  <img src="{{event.picture}}" alt="{{event.description}}" />
-{{/if}}
-<h3>{{event.name}}</h3>
-<p>{{event.description}}</p>
-<p>{{formatDate event.date}}</p>
+<div class="container event-info">
+  <div class="row">
+  {{#if event.picture}}
+    <img src="{{event.picture}}" alt="{{event.description}}" />
+  {{/if}}
+  <h3>{{event.name}}</h3>
+  <p>{{event.description}}</p>
+  <p>{{formatDate event.date}}</p>
 
-<br />
+  <a href="/user-profile/{{event.creator._id}}">{{event.creator.name}}</a>
 
-<a href="/user-profile/{{event.creator._id}}">{{event.creator.name}}</a>
+  {{#if userIsAttending}}
+    <form method="POST" action="/event/{{event._id}}/notattend"><button>I don't
+        want to attend anymore</button></form>
+  {{else}}
+    <form method="POST" action="/event/{{event._id}}/attend"><button>I want to
+        attend</button></form>
+  {{/if}}
 
-{{#if userIsAttending}}
-  <form method="POST" action="/event/{{event._id}}/notattend"><button>I don't
-      want to attend anymore</button></form>
-{{else}}
-  <form method="POST" action="/event/{{event._id}}/attend"><button>I want to
-      attend</button></form>
-{{/if}}
+  <p>Coming:</p>
+  {{#each attendingUsers}}
+    <a href="/user-profile/{{this.user._id}}">{{this.user.name}}</a>
+  {{/each}}
 
-<p>Coming:</p>
-{{#each attendingUsers}}
-  <a href="/user-profile/{{this.user._id}}">{{this.user.name}}</a>
-{{/each}}
-
-<br />
-<br />
-
-{{#if userIsOwner}}
-
-  <div>
-    <a href="/event/{{event._id}}/edit" class="btn">Edit event</a>
-  </div>
-  <br />
   <br />
 
-  <form method="POST" action="/event/{{event._id}}/delete">
-    <button>Delete event</button>
-  </form>
-{{else}}
-  <a href="/messages/{{event.creator._id}}/{{loggedInUser._id}}">Send a message
-    to this event's creator</a>
-{{/if}}
+  <div class="user-options">
+    {{#if userIsOwner}}
+
+      <div>
+        <a href="/event/{{event._id}}/edit" class="btn">Edit event</a>
+      </div>
+      <br />
+      <br />
+
+      <form method="POST" action="/event/{{event._id}}/delete">
+        <button>Delete event</button>
+      </form>
+    {{else}}
+      <a href="/messages/{{event.creator._id}}/{{loggedInUser._id}}">Send a
+        message to this event's creator</a>
+    {{/if}}</div>
+</div>
+</div>
+</div>
