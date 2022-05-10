@@ -1,25 +1,33 @@
-<h1>Chat</h1>
+<div class="send-message">
+  <h1>Chat</h1>
 
-<form method="POST" action="/messages/{{recipient._id}}/{{sender._id}}">
+  <form
+    class="form5"
+    method="POST"
+    action="/messages/{{recipient._id}}/{{sender._id}}"
+  >
 
-  <label for="event-description">Create chat with {{recipient.name}}</label>
-  <textarea
-    id="create-chat"
-    placeholder="Write here your message"
-    name="message"
-  ></textarea>
+    <label for="event-description">Create chat with {{recipient.name}}</label>
+    <textarea
+      id="create-chat"
+      placeholder="Your message here"
+      name="message"
+    ></textarea>
 
-  <button>Send message</button>
+    <button>Send</button>
 
-</form>
+  </form>
+</div>
 
-{{#each messages}}
-  <div class="messenger">
+<div class="messenger1">
+  {{#each messages}}
+
     <a href="/user-profile/{{this.sender._id}}">{{this.sender.name}}:</a>
     {{this.message}}
     <br />
-  </div>
-{{/each}}
+
+  {{/each}}
+</div>
 
 {{!-- {{#each chat}}
   {{#each this}}

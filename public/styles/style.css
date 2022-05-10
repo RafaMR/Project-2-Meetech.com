@@ -96,7 +96,9 @@ form {
 .form1,
 .form2,
 .form3,
-.form4 {
+.form4,
+.form5,
+.form6 {
   margin: 0 auto;
   font-size: 1.5em;
 }
@@ -112,14 +114,22 @@ form {
 .form3 button,
 .form4 label,
 .form4 input,
-.form4 button {
+.form4 button,
+.form5 label,
+.form5 input,
+.form5 button,
+.form6 label,
+.form6 input,
+.form6 button {
   margin: 0.5em 0;
 }
 
 .form1 button,
 .form2 button,
 .form3 button,
-.form4 button {
+.form4 button,
+.form5 button,
+.form6 button {
   max-width: 7em;
   margin: 0 auto;
   margin-top: 1em;
@@ -216,13 +226,17 @@ footer {
 .create-form,
 .edit-profile,
 .signin,
-.signup {
+.signup,
+.send-message,
+.event-edit {
   padding: 2em 0;
   line-height: 1.8em;
 }
 
 .create-form h1,
-.edit-profile h1 {
+.edit-profile h1,
+.send-message h1,
+.event-edit h1 {
   color: #005452;
   text-align: center;
 }
@@ -304,6 +318,11 @@ footer {
   max-width: 100%;
   max-height: 100%;
   display: block;
+}
+
+.messenger1 a {
+  text-decoration: none;
+  color: black;
 }
 
 /*# sourceMappingURL=style.css.map */

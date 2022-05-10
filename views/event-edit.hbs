@@ -1,55 +1,57 @@
-<h1>Edit Event</h1>
+<div class="event-edit">
+  <h1>Edit event</h1>
 
-<form method="POST" enctype="multipart/form-data">
+  <form class="form6" method="POST" enctype="multipart/form-data">
 
-  {{#if event.picture}}
-    <label for="picture"> Picture </label>
-    <input id="picture" type="file" accept="image/*" name="picture" />
-  {{/if}}
+    {{#if event.picture}}
+      <label for="picture"> Picture </label>
+      <input id="picture" type="file" accept="image/*" name="picture" />
+    {{/if}}
 
-  <label for="event-name"> Event Name</label>
-  <input
-    id="event-name"
-    type="text"
-    placeholder="Event´s name"
-    name="name"
-    required
-  />
+    <label for="event-name"> Event Name</label>
+    <input
+      id="event-name"
+      type="text"
+      placeholder="Event´s name"
+      name="name"
+      required
+    />
 
-  <label for="event-type"> Type </label>
-  <input
-    id="event-type"
-    type="text"
-    placeholder="Type of event"
-    name="type"
-    required
-  />
+    <label for="event-type"> Type </label>
+    <input
+      id="event-type"
+      type="text"
+      placeholder="Type of event"
+      name="type"
+      required
+    />
 
-  <label for="event-date"> Date </label>
-  <input
-    id="event-date"
-    type="date"
-    placeholder="Date of the event"
-    name="date"
-    required
-  />
+    <label for="event-date"> Date </label>
+    <input
+      id="event-date"
+      type="date"
+      placeholder="Date of the event"
+      name="date"
+      required
+    />
 
-  <label for="event-location"> Location</label>
-  <input
-    id="event-location"
-    type="text"
-    placeholder="Event´s name"
-    name="location"
-    required
-  />
+    <label for="event-location"> Location</label>
+    <input
+      id="event-location"
+      type="text"
+      placeholder="Event´s name"
+      name="location"
+      required
+    />
 
-  <label for="event-description">Description of the event</label>
-  <textarea
-    id="event-description"
-    placeholder="Description of your event"
-    name="description"
-  >{{event.description}}</textarea>
+    <label for="event-description">Description of the event</label>
+    <textarea
+      id="event-description"
+      placeholder="Description of your event"
+      name="description"
+    >{{event.description}}</textarea>
 
-  <button>Update</button>
+    <button>Update</button>
 
-</form>
+  </form>
+</div>
