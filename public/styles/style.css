@@ -85,8 +85,12 @@ p {
 form {
   display: flex;
   flex-direction: column;
-  padding: 1em;
   max-width: 60%;
+}
+
+.form1,
+.form2 {
+  margin: 0 auto;
 }
 
 input:not([type='checkbox']),
@@ -171,6 +175,17 @@ footer {
   color: #efeeea;
   font-size: 1.5em;
   padding: 1.5em;
+  text-align: center;
+}
+
+.create-form,
+.edit-profile {
+  padding: 2em 0;
+}
+
+.create-form h1,
+.edit-profile h1 {
+  color: #005452;
   text-align: center;
 }
 
