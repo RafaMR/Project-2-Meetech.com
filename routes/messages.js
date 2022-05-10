@@ -6,7 +6,7 @@ const User = require('../models/user');
 const messagesRouter = new exppress.Router();
 
 messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
-  const senderId = req.params.senderId;
+  const { senderId } = req.params;
   let sender;
   let recipient;
 
@@ -20,7 +20,6 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
         .populate('recipient');
     })
     .then((senderIGot) => {
-      console.log(senderIGot);
       let newArray = []; // [...{id: id, name: name, myself: myself}]
 
       for (let i = 0; i < senderIGot.length; i++) {
@@ -52,7 +51,6 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
           a.findIndex((v2) => JSON.stringify(v2) === JSON.stringify(v)) === i
       );
 
-      console.log('another one ', anotherOne);
       return anotherOne;
     })
     .then((anotherOne) => {
@@ -61,13 +59,13 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
       });
     })
     .catch((error) => {
-      next(error);
+      next(new Error('COULD_NOT_RETRIEVE_CHATS'));
     });
 });
 
 messagesRouter.get('/:recipientId/:senderId', routeGuard, (req, res, next) => {
-  const recipientId = req.params.recipientId;
-  const senderId = req.params.senderId;
+  const { recipientId } = req.params;
+  const { senderId } = req.params;
   let recipient;
   let sender;
 
@@ -84,22 +82,17 @@ messagesRouter.get('/:recipientId/:senderId', routeGuard, (req, res, next) => {
           { recipient: senderId, sender: recipientId }
         ]
       }).populate('sender');
-
-      //we need to include all the messages in which the current user is the recipient and the event creator is the sender as well. This can be done with the $or Mongoose operator, for which we need to check the syntax
     })
     .then((messagesIGot) => {
       res.render('messages', { recipient, sender, messages: messagesIGot });
     })
     .catch((error) => {
-      next(error);
+      next(new Error('COULD_NOT_LOAD_MESSAGES'));
     });
 });
 
-// Message validation failed: message: Path `message` is required.
-
 messagesRouter.post('/:recipientId/:senderId', routeGuard, (req, res, next) => {
-  const recipientId = req.params.recipientId;
-  const senderId = req.params.senderId;
+  const { recipientId, senderId } = req.params;
   const messageContent = req.body.message;
   const message = {
     message: messageContent,
@@ -111,58 +104,8 @@ messagesRouter.post('/:recipientId/:senderId', routeGuard, (req, res, next) => {
       res.redirect(`/messages/${recipientId}/${senderId}`);
     })
     .catch((error) => {
-      next(error);
-    });
-});
-/*
-messagesRouter.get('/', (req, res) => {
-  res.render('messages');
-});
-
-// //GET - '/messages/:recipient' - Views chat with a user
-
-// messagesRouter.get('/:recipient', (req, res, next) => {
-//   const { id } = req.params;
-//   Message.findById(id)
-//     .populate('recipient')
-//     .then((chat) => {
-//       //let userIsOwner = req.user && String(req.user._id) === String(event.creator._id);
-//       res.render('messages-user', { chat });
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//       next(new Error('Chat not found'));
-//     });
-// });
-
-//POST - '/messages/new' - Handles new message creation
-messagesRouter.post('/new', routeGuard, (req, res, next) => {
-  const { message, sender, recipient, createdAt, updatedAt } = req.body;
-  Message.create({
-    message,
-    sender,
-    recipient,
-    createdAt,
-    updatedAt
-  })
-    .then(() => {
-      res.redirect('/:recipient');
-    })
-    .catch((error) => {
-      next(error);
+      next(new Error('COULD_NOT_SEND_MESSAGE'));
     });
 });
 
-//POST - '/message/:recipient/:id' - Handles deletion.
-messagesRouter.post('/:id/delete', routeGuard, (req, res, next) => {
-  const { id } = req.params;
-  Message.findOneAndDelete({ _id: id, recipient: req.user._id })
-    .then(() => {
-      res.redirect('/');
-    })
-    .catch((error) => {
-      next(error);
-    });
-});
-*/
 module.exports = messagesRouter;

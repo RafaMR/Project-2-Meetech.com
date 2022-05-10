@@ -16,14 +16,6 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// const transporter = nodemailer.createTransport({
-//   service: 'Gmail',
-//   auth: {
-//     user: process.env.EMAIL_SENDER,
-//     pass: process.env.EMAIL_PASSWORD
-//   }
-// });
-
 const router = new Router();
 
 router.get('/sign-up', (req, res, next) => {
@@ -58,13 +50,12 @@ router.post('/sign-up', fileUpload.single('picture'), (req, res, next) => {
         subject: 'Welcome',
         text: 'Welcome to Meetech-app'
       });
-      // res.redirect(`/user-profile/${id}`);
     })
     .then(() => {
       res.redirect('/');
     })
     .catch((error) => {
-      next(error);
+      next(new Error('COULD_NOT_SIGN_UP'));
     });
 });
 
@@ -94,7 +85,7 @@ router.post('/sign-in', (req, res, next) => {
       }
     })
     .catch((error) => {
-      next(error);
+      next(new Error('COULD_NOT_SIGN_IN'));
     });
 });
 

@@ -21,7 +21,6 @@ router.get('/', (req, res, next) => {
       }
     })
     .then((likes) => {
-      console.log(likes);
       const mappedEvents = events.map((event) => {
         const liked = likes.some(
           (like) => String(like.event) === String(event._id)
@@ -31,12 +30,8 @@ router.get('/', (req, res, next) => {
       res.render('home', { events: mappedEvents });
     })
     .catch((error) => {
-      next(error);
+      next(new Error('COULD_NOT_LOAD_MAIN_PAGE'));
     });
 });
-
-// router.get('/private', routeGuard, (req, res, next) => {
-//   res.render('private');
-// });
 
 module.exports = router;

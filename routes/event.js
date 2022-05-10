@@ -39,34 +39,10 @@ eventRouter.post(
         res.redirect('/');
       })
       .catch((error) => {
-        next(error);
+        next(new Error('COULD_NOT_CREATE_EVENT'));
       });
   }
 );
-
-/*
-// GET - '/event/:id' - Loads event from database, renders single event page
-eventRouter.get('/:id', (req, res, next) => {
-  let attendingUsers;
-  const { id } = req.params;
-  RSVP.find({ event: id })
-    .populate('user')
-    .then((attendances) => {
-      attendingUsers = attendances;
-      return Event.findById(id);
-    })
-    //.populate('creator')
-    .then((event) => {
-      let userIsOwner =
-        req.user && String(req.user._id) === String(event.creator._id);
-      res.render('event-single', { event, userIsOwner, attendingUsers });
-    })
-    .catch((error) => {
-      console.log(error);
-      next(new Error('EVENT_NOT_FOUND'));
-    });
-});
-*/
 
 eventRouter.get('/:id', (req, res, next) => {
   let attendingUsers;
@@ -80,11 +56,9 @@ eventRouter.get('/:id', (req, res, next) => {
         .then((event) => {
           let userIsOwner =
             req.user && String(req.user._id) === String(event.creator._id);
-          console.log(attendingUsers);
           const attendingUsersIds = attendingUsers.map((eachUser) => {
             return String(eachUser.user._id);
           });
-          console.log(attendingUsersIds);
           let userIsAttending =
             req.user && attendingUsersIds.includes(String(req.user._id));
           res.render('event-single', {
@@ -97,7 +71,6 @@ eventRouter.get('/:id', (req, res, next) => {
         });
     })
     .catch((error) => {
-      console.log(error);
       next(new Error('EVENT_NOT_FOUND'));
     });
 });
@@ -114,7 +87,7 @@ eventRouter.get('/:id/edit', routeGuard, (req, res, next) => {
       }
     })
     .catch((error) => {
-      next(error);
+      next(new Error('COULD_NOT_LOAD_EDIT_PAGE'));
     });
 });
 
@@ -138,7 +111,7 @@ eventRouter.post(
         res.redirect(`/event/${id}`);
       })
       .catch((error) => {
-        next(error);
+        next(new Error('COULD_NOT_EDIT_EVENT'));
       });
   }
 );
@@ -152,7 +125,7 @@ eventRouter.post('/:id/delete', routeGuard, (req, res, next) => {
       res.redirect('/');
     })
     .catch((error) => {
-      next(error);
+      next(new Error('COULD_NOT_DELETE_EVENT'));
     });
 });
 
@@ -173,14 +146,13 @@ eventRouter.post('/:id/like', routeGuard, (req, res, next) => {
       return Like.count({ event: id });
     })
     .then((likeCount) => {
-      console.log(likeCount);
       return Event.findByIdAndUpdate(id, { likeCount });
     })
     .then(() => {
       res.redirect('/');
     })
     .catch((error) => {
-      next(error);
+      next(new Error('COULD_NOT_LIKE_EVENT'));
     });
 });
 
@@ -193,14 +165,13 @@ eventRouter.post('/:id/unlike', routeGuard, (req, res, next) => {
       return Like.count({ event: id });
     })
     .then((likeCount) => {
-      console.log(likeCount);
       return Event.findByIdAndUpdate(id, { likeCount });
     })
     .then(() => {
       res.redirect('/');
     })
     .catch((error) => {
-      next(error);
+      next(new Error('COULD_NOT_UNLIKE_EVENT'));
     });
 });
 
@@ -220,7 +191,7 @@ eventRouter.post('/:id/attend', routeGuard, (req, res, next) => {
       res.redirect(`/event/${id}`);
     })
     .catch((error) => {
-      next(error);
+      next(new Error('COULD_NOT_MARK_EVENT_AS_ATTENDING'));
     });
 });
 
@@ -233,7 +204,7 @@ eventRouter.post('/:id/notattend', routeGuard, (req, res, next) => {
       res.redirect(`/event/${id}`);
     })
     .catch((error) => {
-      next(error);
+      next(new Error('COULD_NOT_MARK_EVENT_AS_NOT_ATTENDING'));
     });
 });
 

@@ -15,13 +15,13 @@ profileRouter.post(
   routeGuard,
   fileUpload.single('picture'),
   (req, res, next) => {
-    const id = req.user._id;
+    const { _id } = req.user;
     const { name, email, city, zipCode, jobTitle, linkedIn } = req.body;
     let picture;
     if (req.file) {
       picture = req.file.path;
     }
-    User.findByIdAndUpdate(id, {
+    User.findByIdAndUpdate(_id, {
       name,
       email,
       city,
@@ -31,17 +31,16 @@ profileRouter.post(
       picture
     })
       .then(() => {
-        res.redirect(`/user-profile/${id}`);
+        res.redirect(`/user-profile/${_id}`);
       })
       .catch((error) => {
-        next(error);
+        next(new Error('PROFILE_NOT_EDITED'));
       });
   }
 );
 
 profileRouter.get('/:id', (req, res, next) => {
   const { id } = req.params;
-  console.log(id);
   let user;
   User.findById(id)
     .then((userInfo) => {
@@ -62,19 +61,18 @@ profileRouter.get('/:id', (req, res, next) => {
       });
     })
     .catch((error) => {
-      console.log(error);
       next(new Error('PROFILE_NOT_FOUND'));
     });
 });
 
 profileRouter.post('/delete', routeGuard, (req, res, next) => {
-  const id = req.user._id;
-  User.findByIdAndRemove(id)
+  const { _id } = req.user;
+  User.findByIdAndRemove(_id)
     .then(() => {
       res.redirect('/');
     })
     .catch((error) => {
-      next(error);
+      next(new Error('EVENT_NOT_DELETED'));
     });
 });
 
