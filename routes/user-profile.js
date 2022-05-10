@@ -44,6 +44,7 @@ profileRouter.get('/:id', (req, res, next) => {
   let user;
   User.findById(id)
     .then((userInfo) => {
+      console.log(userInfo);
       visitedUser = userInfo;
       if (!visitedUser) {
         throw new Error('PROFILE_NOT_FOUND');
@@ -53,6 +54,7 @@ profileRouter.get('/:id', (req, res, next) => {
     })
     .then((events) => {
       let userIsOwner = req.user && String(req.user._id) === id;
+      //console.log(visitedUser);
       res.render('user-profile', {
         visitedUser,
         events,

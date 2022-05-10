@@ -23,8 +23,8 @@ router.get('/sign-up', (req, res, next) => {
 });
 
 router.post('/sign-up', fileUpload.single('picture'), (req, res, next) => {
-  const { name, email, password, city, zipCode, jobTitle, linkedIn } = req.body;
   let picture;
+  const { name, email, password, city, zipCode, jobTitle, linkedIn } = req.body;
   if (req.file) {
     picture = req.file.path;
   }
@@ -38,7 +38,8 @@ router.post('/sign-up', fileUpload.single('picture'), (req, res, next) => {
         city,
         zipCode,
         jobTitle,
-        linkedIn
+        linkedIn,
+        picture
       });
     })
     .then((user) => {

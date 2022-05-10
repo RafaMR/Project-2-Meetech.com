@@ -1,7 +1,13 @@
 <div class="user-profile">
-<div class="user-maininfo"><div><img src="{{visitedUser.picture}}" alt="{{visitedUser.name}}" /></div>
-<div class="user-name"><h1>{{visitedUser.name}}</h1>
-<h4>{{visitedUser.jobTitle}} based in {{visitedUser.city}}</h4></div></div>
+  <div class="user-maininfo">
+    <div class="user-picture">
+      <img src="{{visitedUser.picture}}" alt="{{visitedUser.name}}" />
+    </div>
+      <div class="user-name">
+        <h1>{{visitedUser.name}}</h1>
+        <h4>{{visitedUser.jobTitle}} based in {{visitedUser.city}}</h4>
+      </div>
+  </div>
 
 <hr>
 
@@ -12,19 +18,21 @@
  
 <div class="user-options">
 {{#if userIsOwner}}
-<a href="/user-profile/edit">Edit profile</a>
+<a href="/user-profile/edit">Edit profile</a> 
 <form method="POST" action="/user-profile/delete">
     <button>Delete profile</button>
-  </form>
+</form>
 {{/if}}
 </div>
 </div>
 
-<div class="container"><div class="row">
+<div class="container">
+<div class="row">
 {{#each events}}
 {{> event_partial}}
 {{/each}}
-</div></div>
+</div>
+</div>
 
 
 
