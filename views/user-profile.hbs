@@ -1,38 +1,42 @@
-<div class="user-profile">
-  <div class="user-maininfo">
-    <div class="user-picture">
-      <img src="{{visitedUser.picture}}" alt="{{visitedUser.name}}" />
-    </div>
-      <div class="user-name">
-        <h1>{{visitedUser.name}}</h1>
-        <h4>{{visitedUser.jobTitle}} based in {{visitedUser.city}}</h4>
-      </div>
-  </div>
-
-<hr>
-
-
-  <div class="messenger">
-    <a href="/messages/{{visitedUser._id}}/{{loggedUserId}}" class="btn">Send a message to {{visitedUser.name}}</a>
-  </div>
- 
-<div class="user-options">
-{{#if userIsOwner}}
-<a href="/user-profile/edit">Edit profile</a> 
-<form method="POST" action="/user-profile/delete">
-    <button>Delete profile</button>
-</form>
-{{/if}}
-</div>
-</div>
-
 <div class="container">
-<div class="row">
-{{#each events}}
-{{> event_partial}}
-{{/each}}
+  <div class="user-maininfo"> 
+
+      <div class="row align-items-start justify-content-flex-end">
+        <div class="col-md-5">
+            <div class="user-picture">
+            <img src="{{visitedUser.picture}}" alt="{{visitedUser.name}}"/>
+          </div>
+        </div>
+      </div>
+      <br>
+      <h1>{{visitedUser.name}}</h1>
+      <h4>{{visitedUser.jobTitle}} based in {{visitedUser.city}}</h4>
+
+      <div class="messenger">
+        <a href="/messages/{{visitedUser._id}}/{{loggedUserId}}" class="btn">Send a message to {{visitedUser.name}}</a>
+      </div>
+      <br>
+      <div class="user-options">
+        {{#if userIsOwner}}
+          <a href="/user-profile/edit"><buton type="submit" class="button-edit">Edit profile</a></buton>
+            <form method="POST" action="/user-profile/delete">
+              <button type="submit" class="button-delete">Delete profile</button>
+            </form>
+        {{/if}}
+      </div>
+
+
+          <div class="container">
+            <div class="row">
+              {{#each events}}
+              {{> event_partial}}
+              {{/each}}
+            </div>
+          </div>
+
+  </div>
 </div>
-</div>
+
 
 
 
