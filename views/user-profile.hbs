@@ -1,12 +1,8 @@
 <div class="container">
   <div class="user-profileinfo"> 
 
-      <div class="row align-items-start justify-content-flex-end">
-        <div class="col-md-5">
-            <div class="user-pictureprofile">
+      <div class="user-pictureprofile">
             <img src="{{visitedUser.picture}}" alt="{{visitedUser.name}}"/>
-          </div>
-        </div>
       </div>
       <br>
       <h1>{{visitedUser.name}}</h1>
@@ -20,7 +16,7 @@
         {{#if userIsOwner}}
           <a href="/user-profile/edit"><buton type="submit" class="button-edit">Edit profile</a></buton>
             <form method="POST" action="/user-profile/delete">
-              <button type="submit" class="button-delete">Delete profile</button>
+              <buton type="submit" class="button-delete">Delete profile</button>
             </form>
         {{/if}}
       </div>
