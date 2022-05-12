@@ -28,7 +28,9 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
           const newUserRecipient = {
             id: String(senderIGot[i].recipient._id),
             name: senderIGot[i].recipient.name,
-            myself: senderId
+            myself: senderId,
+            city: senderIGot[i].recipient.city,
+            jobTitle: senderIGot[i].recipient.jobTitle
           };
           if (!newArray.includes(newUserRecipient)) {
             newArray.push(newUserRecipient);
@@ -38,8 +40,11 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
           const newUserSender = {
             id: String(senderIGot[i].sender._id),
             name: senderIGot[i].sender.name,
-            myself: senderId
+            myself: senderId,
+            city: senderIGot[i].sender.city,
+            jobTitle: senderIGot[i].sender.jobTitle
           };
+          
           if (!newArray.includes(newUserSender)) {
             newArray.push(newUserSender);
           }
