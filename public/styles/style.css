@@ -237,6 +237,7 @@ footer {
 .create-form h1,
 .edit-profile h1,
 .send-message h1,
+.chat-list h1,
 .event-edit h1 {
   color: #005452;
   text-align: center;
@@ -371,6 +372,130 @@ footer {
 
 .row {
   padding-left: 3em;
+}
+
+.event-info {
+  width: 100%;
+  margin-top: 40px;
+  padding: 60px;
+  border-radius: 4px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.event-info .row {
+  padding-left: 0em;
+}
+
+.event-info .row .card-body {
+  margin-left: 0;
+}
+
+.d-flex {
+  padding-left: 1em;
+}
+
+.card-body {
+  margin-left: 50px;
+}
+
+.img-spot-details {
+  width: 500px;
+  height: 300px;
+  object-fit: contain;
+  justify-content: center;
+}
+
+.user-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-left: 1em;
+}
+
+.btn-attend {
+  background-color: #005452;
+  color: #efeeea;
+  border: 1px solid #ab9781;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 30px;
+  padding: 7px 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 5px;
+}
+
+.button-edit {
+  color: #000000;
+  border: 1px solid #ab9781;
+  background-color: transparent;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 30px;
+  padding: 7px 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 5px;
+}
+
+.button-delete {
+  color: #000000;
+  background-color: #b02f12;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 7px 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 5px;
+}
+
+.button-edit:hover {
+  color: #005452;
+}
+
+.user-options a:hover {
+  color: #005452;
+}
+
+.user-profileinfo {
+  width: 100%;
+  margin-top: 20px;
+  padding: 50px;
+  border-radius: 4px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.user-name {
+  margin-left: 1em;
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.event-info {
+  padding: 2em 0;
+  max-width: 60%;
+  margin: 0 auto;
+}
+
+.user-pictureprofile img {
+  width: 50%;
+  height: 50%;
+  object-fit: fill;
+  border-radius: 20px;
+  display: block;
+  margin: 0 auto;
+}
+
+.messenger1 a {
+  text-decoration: none;
+  color: black;
 }
 
 /*# sourceMappingURL=style.css.map */

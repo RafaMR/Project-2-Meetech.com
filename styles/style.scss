@@ -392,6 +392,18 @@ footer {
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
 }
 
+.event-info .row {
+  padding-left: 0em;
+}
+
+.event-info .row .card-body {
+  margin-left: 0;
+}
+
+.d-flex {
+  padding-left: 1em;
+}
+
 .card-body {
   margin-left: 50px;
 }
@@ -407,6 +419,7 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  padding-left: 1em;
 }
 
 //.user-options button {
@@ -430,6 +443,20 @@ footer {
 //.user-options a:hover {
 //  color: rgb(0, 84, 82);
 //}
+
+.btn-attend {
+  background-color: rgb(0, 84, 82);
+  color: rgb(239, 238, 234);
+  border: 1px solid #ab9781;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 30px;
+  padding: 7px 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 5px;
+}
 
 .button-edit {
   color: #000000;
@@ -466,7 +493,7 @@ footer {
 
 /////// EVENT --- SINGLE ///////
 
-.user-maininfo {
+.user-profileinfo {
   width: 100%;
   margin-top: 20px;
   padding: 50px;
@@ -500,12 +527,14 @@ footer {
   margin: 0 auto;
 }
 
-.user-picture img {
+.user-pictureprofile img {
   width: 50%;
   height: 50%;
   //display: block;
   object-fit: fill;
   border-radius: 20px;
+  display: block;
+  margin: 0 auto;
 }
 
 .messenger1 a {

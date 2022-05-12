@@ -1,13 +1,14 @@
-<div class="container ">
-  <div class=" event-info">
+<div class="container">
+  <div class="event-info">
     <div class="row align-items-center">
-   
 
         {{#if event.picture}}
           <img class="img-spot-details" src="{{event.picture}}" alt="{{event.description}}" />
         {{/if}}
 
+     
         <div class="card-body">
+    
             <h3>{{event.name}}</h3>
             <p>Event Description: {{event.description}}</p>
             <p>{{formatDate event.date}}</p>
@@ -19,10 +20,10 @@
 
           <div  class="d-flex justify-content-center">
                {{#if userIsAttending}}
-                  <form method="POST" action="/event/{{event._id}}/notattend"><button type="submit" class="btn btn-primary">I don't
+                  <form method="POST" action="/event/{{event._id}}/notattend"><button type="submit" class="btn-attend">I don't
                     want to attend anymore</button></form>
                 {{else}}
-                <form method="POST" action="/event/{{event._id}}/attend"><button type="submit" class="btn btn-primary">I want to attend</button></form>
+                <form method="POST" action="/event/{{event._id}}/attend"><button type="submit" class="btn-attend">I want to attend</button></form>
                  {{/if}}
           </div>
           <br>
@@ -48,4 +49,6 @@
 
       </div>
   </div>
+</div>
+
 </div>
