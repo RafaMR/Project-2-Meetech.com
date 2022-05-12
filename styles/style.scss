@@ -380,3 +380,134 @@ footer {
 .row {
   padding-left: 3em;
 }
+
+/////// *********** RAFA EVENT --- SINGLE ***************** ///////
+
+.event-info {
+  width: 100%;
+  margin-top: 40px;
+  padding: 60px;
+  border-radius: 4px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+  margin-left: 50px;
+}
+
+.img-spot-details {
+  width: 500px;
+  height: 300px;
+  object-fit: contain;
+  justify-content: center;
+}
+
+.user-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+//.user-options button {
+//  border: 0ch;
+//  margin: 0;
+//  padding: 0;
+//  margin-left: 1em;
+//  font-size: 1.5em;
+//}
+//
+//.user-options a {
+//  text-decoration: none;
+//  color: black;
+//  font-size: 1.5em;
+//}
+
+//.user-options button:hover {
+//  color: rgb(0, 84, 82);
+//}
+//
+//.user-options a:hover {
+//  color: rgb(0, 84, 82);
+//}
+
+.button-edit {
+  color: #000000;
+  border: 1px solid #ab9781;
+  background-color: transparent;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 30px;
+  padding: 7px 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 5px;
+}
+.button-delete {
+  color: #000000;
+  background-color: #b02f12;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 7px 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 5px;
+}
+
+.button-edit:hover {
+  color: rgb(0, 84, 82);
+}
+
+.user-options a:hover {
+  color: rgb(0, 84, 82);
+}
+
+/////// EVENT --- SINGLE ///////
+
+.user-maininfo {
+  width: 100%;
+  margin-top: 20px;
+  padding: 50px;
+  border-radius: 4px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+  //display: flex;
+  //flex-direction: row;
+  //justify-items: auto;
+  //padding-left: 1em;
+  //img {
+  //  size: 20%;
+  //}
+}
+
+.user-name {
+  margin-left: 1em;
+}
+
+.user-profile {
+  display: flex;
+  //flex-direction: column;
+  //max-width: 60%;
+  //margin: 0 auto;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.event-info {
+  padding: 2em 0;
+  max-width: 60%;
+  margin: 0 auto;
+}
+
+.user-picture img {
+  width: 50%;
+  height: 50%;
+  //display: block;
+  object-fit: fill;
+  border-radius: 20px;
+}
+
+.messenger1 a {
+  text-decoration: none;
+  color: black;
+}
