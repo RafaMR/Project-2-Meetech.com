@@ -1,8 +1,34 @@
-{{#each anotherOne}}
-  <div class="messenger1">
-    <a href="/messages/{{this.id}}/{{this.myself}}" class="btn">Go to chat with
-      {{this.name}}</a>
-    <br />
-    <br />
+<div class="chat-list">
+  <h1>List of chats</h1>
+  <div class="container clearfix">
+
+      <div class="chat">
+        {{#each anotherOne}}
+          <div class="chat-header clearfix">
+            {{#if this.picture}}
+              <img src="{{this.picture}}" alt="Profile picture" />
+            {{else}}
+              <img
+                src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg"
+                alt="Default picture"
+              />
+            {{/if}}
+            <div class="chat-about">
+              <div class="chat-with">
+                <a href="/messages/{{this.id}}/{{this.myself}}">Go to chat with
+                  {{this.name}}</a>
+              </div>
+              {{#if this.city}}
+                <div class="short-description">{{this.jobTitle}}
+                  based in
+                  {{this.city}}</div>
+              {{else}}
+                <div class="short-description">{{this.jobTitle}}</div>
+              {{/if}}
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
   </div>
-{{/each}}
+</div>
