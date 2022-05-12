@@ -429,13 +429,14 @@ footer {
 
 .button-edit {
   color: #000000;
-  border: 1px solid #ab9781;
+  border: 1px solid #b32727;
+  height: 50px;
+  width: 150px;
   background-color: transparent;
   text-decoration: none;
   font-weight: 600;
-  margin-right: 30px;
-  padding: 7px 20px;
-  font-size: 12px;
+  font-size: 16px !important;
+  text-align: center !important;
   text-transform: uppercase;
   letter-spacing: 2px;
   border-radius: 5px;

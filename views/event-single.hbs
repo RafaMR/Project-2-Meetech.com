@@ -38,9 +38,9 @@
 
             {{#if userIsOwner}}
               <div class="user-options">
-                <a href="/event/{{event._id}}/edit"> <buton type="submit" class="button-edit">Edit Event</buton></a>
+                <a href="/event/{{event._id}}/edit" class="button-edit"> <button type="submit">Edit Event</button></a>
                   <form method="POST" action="/event/{{event._id}}/delete">
-                  <buton type="submit" class="button-delete">Delete event</button>
+                  <button type="submit" class="button-delete">Delete event</button>
                   </form>
               </div>
             {{/if}}
