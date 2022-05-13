@@ -353,6 +353,8 @@ footer {
   color: rgb(0, 84, 82);
 }
 
+// load more button
+
 .col-4 {
   display: none;
 }
@@ -436,19 +438,26 @@ footer {
   border-radius: 5px;
 }
 
-//.button-edit {
-//  color: #000000;
-//  width: 80px;
-//  background-color: #b02f12;
-//  border: 50px solid black;
-//}
+// .user-profileinfo .user-options .button-edit button {
+//   color: #000000;
+//   border: 1px solid #b32727;
+//   background-color: transparent;
+//   text-decoration: none;
+//   font-weight: 600;
+//   text-align: center !important;
+//   text-transform: uppercase;
+//   border-radius: 5px;
+//   font-size: 1em;
+//   padding-right: 1em;
+//   padding-left: 1em;
+// }
+
 .button-edit button {
   color: #000000;
   border: 1px solid #b32727;
   background-color: transparent;
   text-decoration: none;
   font-weight: 600;
-  // font-size: 16px !important;
   text-align: center !important;
   text-transform: uppercase;
   border-radius: 5px;
@@ -477,7 +486,7 @@ footer {
   color: rgb(0, 84, 82);
 }
 
-/////// EVENT --- SINGLE ///////
+// user profile
 
 .user-profileinfo {
   width: 100%;
@@ -530,6 +539,8 @@ footer {
   text-decoration: none;
   color: black;
 }
+
+// chats
 
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
 
