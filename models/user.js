@@ -20,7 +20,7 @@ const schema = new mongoose.Schema({
   },
   picture: {
     type: String,
-    default: '../public/images/cat.jpeg'
+    default: '/images/default.png'
   },
   city: {
     type: String,

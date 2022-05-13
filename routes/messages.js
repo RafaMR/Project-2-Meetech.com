@@ -30,7 +30,8 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
             name: senderIGot[i].recipient.name,
             myself: senderId,
             city: senderIGot[i].recipient.city,
-            jobTitle: senderIGot[i].recipient.jobTitle
+            jobTitle: senderIGot[i].recipient.jobTitle,
+            picture: senderIGot[i].recipient.picture
           };
           if (!newArray.includes(newUserRecipient)) {
             newArray.push(newUserRecipient);
@@ -42,7 +43,8 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
             name: senderIGot[i].sender.name,
             myself: senderId,
             city: senderIGot[i].sender.city,
-            jobTitle: senderIGot[i].sender.jobTitle
+            jobTitle: senderIGot[i].sender.jobTitle,
+            picture: senderIGot[i].sender.picture
           };
 
           if (!newArray.includes(newUserSender)) {
