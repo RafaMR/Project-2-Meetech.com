@@ -44,7 +44,7 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
             city: senderIGot[i].sender.city,
             jobTitle: senderIGot[i].sender.jobTitle
           };
-          
+
           if (!newArray.includes(newUserSender)) {
             newArray.push(newUserSender);
           }

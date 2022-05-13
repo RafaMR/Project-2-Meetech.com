@@ -576,9 +576,9 @@ footer {
   border-radius: 50%;
 }
 
-.chat .chat-header .lol {
-  width: 60px;
+.chat .chat-header .chat-preview {
   height: 60px;
+  width: 60px;
 }
 
 .chat .chat-history {
