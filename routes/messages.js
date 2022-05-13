@@ -32,6 +32,7 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
             city: senderIGot[i].recipient.city,
             jobTitle: senderIGot[i].recipient.jobTitle,
             picture: senderIGot[i].recipient.picture
+            //imrecipient: false
           };
           if (!newArray.includes(newUserRecipient)) {
             newArray.push(newUserRecipient);
@@ -44,7 +45,8 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
             myself: senderId,
             city: senderIGot[i].sender.city,
             jobTitle: senderIGot[i].sender.jobTitle,
-            picture: senderIGot[i].sender.picture
+            picture: senderIGot[i].sender.picture,
+            imRecipient: true
           };
 
           if (!newArray.includes(newUserSender)) {
@@ -93,7 +95,25 @@ messagesRouter.get('/:recipientId/:senderId', routeGuard, (req, res, next) => {
       }).populate('sender');
     })
     .then((messagesIGot) => {
-      res.render('messages', { recipient, sender, messages: messagesIGot });
+      let imRecipient = 'undefinded';
+
+      console.log(messagesIGot);
+
+      //If I am the recipient
+      for (let i = 0; i < messagesIGot.length; i++) {
+        if (String(messagesIGot[i].sender._id) === senderId) {
+          messagesIGot[i].imRecipient = false;
+        } else {
+          messagesIGot[i].imRecipient = true;
+        }
+      }
+
+      res.render('messages', {
+        recipient,
+        sender,
+        messages: messagesIGot,
+        imRecipient
+      });
     })
     .catch((error) => {
       next(new Error('COULD_NOT_LOAD_MESSAGES'));

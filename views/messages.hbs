@@ -3,18 +3,20 @@
 
   <div class="messenger1">
     {{#each messages}}
-      {{log this}}
-      <div class="someone-else-message">
-        <a href="/user-profile/{{this.sender._id}}">{{this.sender.name}}:</a>
-        {{this.message}}
-        <br />
-      </div>
 
-      <div class="my-own-message">
-        <a href="/user-profile/{{this.sender._id}}">{{this.sender.name}}:</a>
-        {{this.message}}
-        <br />
-      </div>
+      {{#if imRecipient}}
+        {{log this.imRecipient}}
+        <div class="someone-else-message">
+          <a href="/user-profile/{{this.sender._id}}">{{this.sender.name}}:</a>
+          {{this.message}}
+
+        </div>
+      {{else}}
+        <div class="my-own-message">
+          <a href="/user-profile/{{this.sender._id}}">{{this.sender.name}}:</a>
+          {{this.message}}
+        </div>
+      {{/if}}
     {{/each}}
   </div>
 
