@@ -264,7 +264,8 @@ footer {
 .user-options {
   display: flex;
   flex-direction: row;
-  justify-items: baseline;
+  justify-items: center;
+  padding-left: 0em !important;
 }
 
 .user-options button {
@@ -419,7 +420,6 @@ footer {
   border: 1px solid #ab9781;
   text-decoration: none;
   font-weight: 600;
-  margin-right: 30px;
   padding: 7px 20px;
   font-size: 12px;
   text-transform: uppercase;
@@ -427,19 +427,18 @@ footer {
   border-radius: 5px;
 }
 
-.button-edit {
+.button-edit button {
   color: #000000;
   border: 1px solid #b32727;
-  height: 50px;
-  width: 150px;
   background-color: transparent;
   text-decoration: none;
   font-weight: 600;
-  font-size: 16px !important;
   text-align: center !important;
   text-transform: uppercase;
-  letter-spacing: 2px;
   border-radius: 5px;
+  font-size: 1em;
+  padding-right: 1em;
+  padding-left: 1em;
 }
 
 .button-delete {
@@ -450,8 +449,9 @@ footer {
   padding: 7px 20px;
   font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 2px;
   border-radius: 5px;
+  padding-right: 1em !important;
+  padding-left: 1em !important;
 }
 
 .button-edit:hover {
@@ -493,7 +493,7 @@ footer {
 }
 
 .user-pictureprofile img {
-  width: auto;
+  width: 300px;
   height: auto;
   object-fit: fill;
   border-radius: 20px;
