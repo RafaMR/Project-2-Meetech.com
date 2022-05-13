@@ -59,7 +59,7 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
 
       const anotherOne = [
         ...new Map(filtered.map((item) => [item['id'], item])).values()
-      ];
+      ];q
 
       return anotherOne;
     })
