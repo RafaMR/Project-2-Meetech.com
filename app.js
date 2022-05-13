@@ -27,6 +27,10 @@ hbs.registerHelper('formatDate', (value) => {
   return `${value.toLocaleDateString()}, ${value.toLocaleTimeString()}`;
 });
 
+hbs.registerHelper('ifEquals', function (arg1, arg2, options) {
+  return arg1 == arg2 ? options.fn(this) : options.inverse(this);
+});
+
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 app.use(serveFavicon(path.join(__dirname, 'public/images', 'favicon.ico')));
