@@ -24,7 +24,7 @@ app.set('view engine', 'hbs');
 
 // Format dates added by RAFA ******************
 hbs.registerHelper('formatDate', (value) => {
-  return `${value.toLocaleDateString()}, ${value.toLocaleTimeString()}`;
+  return `${value.toLocaleDateString()}`;
 });
 
 hbs.registerHelper('ifEquals', function (arg1, arg2, options) {

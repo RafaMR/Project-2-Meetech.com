@@ -3,9 +3,7 @@
 
   <div class="messenger1">
     {{#each messages}}
-
       {{#if imRecipient}}
-        {{log this.imRecipient}}
         <div class="someone-else-message">
           <a href="/user-profile/{{this.sender._id}}">{{this.sender.name}}:</a>
           {{this.message}}

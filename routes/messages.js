@@ -98,10 +98,11 @@ messagesRouter.get('/:recipientId/:senderId', routeGuard, (req, res, next) => {
 
       console.log(messagesIGot);
 
-      //If I am the recipient
       for (let i = 0; i < messagesIGot.length; i++) {
+        //If I am not the recipient
         if (String(messagesIGot[i].sender._id) === senderId) {
           messagesIGot[i].imRecipient = false;
+          //If I am not the recipient
         } else {
           messagesIGot[i].imRecipient = true;
         }
