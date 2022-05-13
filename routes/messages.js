@@ -53,7 +53,9 @@ messagesRouter.get('/:senderId', routeGuard, (req, res, next) => {
         }
       }
 
-      const anotherOne = newArray.filter(
+      const filtered = newArray.filter((item) => item.id !== item.myself);
+
+      const anotherOne = filtered.filter(
         (v, i, a) =>
           a.findIndex((v2) => JSON.stringify(v2) === JSON.stringify(v)) === i
       );
