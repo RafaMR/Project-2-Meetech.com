@@ -11,7 +11,7 @@
     
             <h3>{{event.name}}</h3>
             <p>Event Description: {{event.description}}</p>
-            <p>{{formatDate event.date}}</p>
+            <p>{{formatDate event.createdAt}}</p>
 
             <span style="margin-right:20px">Created by:</span><a href="/user-profile/{{event.creator._id}}">{{event.creator.name}}</a>
             <a href="/messages/{{event.creator._id}}/{{loggedInUser._id}}" style="margin-left:50px">Send a message to this event's creator</a>

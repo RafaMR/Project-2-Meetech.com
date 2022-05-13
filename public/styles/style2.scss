@@ -1,0 +1,52 @@
+.messenger1 {
+  flex-direction: column;
+  max-width: 60%;
+  margin: 2em auto;
+  line-height: 2em;
+}
+
+#user-link {
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+.messenger1 a:hover {
+  color: rgb(0, 84, 82);
+}
+
+.col-4 {
+  display: none;
+}
+
+.col-4:nth-child(1),
+.col-4:nth-child(2),
+.col-4:nth-child(3) {
+  display: flex;
+}
+
+#load {
+  font-size: 1.5em;
+  margin: 0.5em 0;
+  max-width: 7em;
+  margin: 0 auto;
+  margin-top: 1em;
+  background-color: rgb(0, 84, 82);
+  color: rgb(239, 238, 234);
+  border-radius: 0.8em;
+}
+#load:hover {
+  color: rgb(0, 84, 82);
+  background-color: rgb(239, 238, 234);
+  font-weight: 600;
+}
+
+// .row {
+//   margin-left: 3em;
+// }
+// .row {
+//   padding-left: 3em;
+// }
+
+// .event-info > .row {
+//   padding-right: 3dem;
+// }
