@@ -613,6 +613,17 @@ $gray: #92959e;
     .short-description {
       color: $gray;
     }
+
+    .chat-header .img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .lol {
+      width: 60px;
+      height: 60px;
+    }
   }
 
   .chat-history {

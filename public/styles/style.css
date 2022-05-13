@@ -570,6 +570,17 @@ footer {
   color: #92959e;
 }
 
+.chat .chat-header .chat-header .img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.chat .chat-header .lol {
+  width: 60px;
+  height: 60px;
+}
+
 .chat .chat-history {
   padding: 30px 30px 20px;
   border-bottom: 2px solid white;
