@@ -67,15 +67,15 @@ profileRouter.get('/:id', (req, res, next) => {
     });
 });
 
-profileRouter.post('/delete', routeGuard, (req, res, next) => {
-  const { _id } = req.user;
-  User.findByIdAndRemove(_id)
-    .then(() => {
-      res.redirect('/');
-    })
-    .catch((error) => {
-      next(new Error('EVENT_NOT_DELETED'));
-    });
-});
+//profileRouter.post('/delete', routeGuard, (req, res, next) => {
+//  const { _id } = req.user;
+//  User.findByIdAndRemove(_id)
+//    .then(() => {
+//      res.redirect('/');
+//    })
+//    .catch((error) => {
+//      next(new Error('EVENT_NOT_DELETED'));
+//    });
+//});
 
 module.exports = profileRouter;
