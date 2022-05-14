@@ -1,5 +1,5 @@
 <div class="col-4 justify-content-between">
-  <div class="card h-100" style="width: 20rem;">
+  <div class="card h-100" style="width: 20rem; border: 3px solid color: rgb(239, 238, 234); border-radius: 2em; overflow: hidden">
 
     <a href="/event/{{_id}}">
       {{#if picture}}
@@ -12,7 +12,7 @@
       <div class="card-body">
       <h5 class="card-title">{{name}}</h5>
       <p class="card-text">
-        <small>{{formatDate createdAt}}</small>
+        <small>{{formatDate this.date}}</small>
         |
         <small>{{creator.name}}</small></p>
 

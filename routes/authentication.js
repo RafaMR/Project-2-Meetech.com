@@ -56,6 +56,7 @@ router.post('/sign-up', fileUpload.single('picture'), (req, res, next) => {
       res.redirect('/');
     })
     .catch((error) => {
+      console.log(error);
       next(new Error('COULD_NOT_SIGN_UP'));
     });
 });

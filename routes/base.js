@@ -27,6 +27,7 @@ router.get('/', (req, res, next) => {
         );
         return { ...event.toJSON(), liked };
       });
+      console.log('These are the events sent to the view: ', mappedEvents);
       res.render('home', { events: mappedEvents });
     })
     .catch((error) => {

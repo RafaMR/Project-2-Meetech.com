@@ -61,6 +61,7 @@ eventRouter.get('/:id', (req, res, next) => {
           });
           let userIsAttending =
             req.user && attendingUsersIds.includes(String(req.user._id));
+          console.log('This is the single event sent to the view: ', event);
           res.render('event-single', {
             event,
             userIsOwner,
