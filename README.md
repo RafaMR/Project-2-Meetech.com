@@ -2,7 +2,7 @@
 
 Welcome to meetech. This is a networking app that allows you to see events, mark as attending as message other users.
 
-https://meetech-app.herokuapp.com/
+https://meetech.up.railway.app/
 
 ![Meetech header pic](https://github.com/RafaMR/Meetech.com/blob/master/public/images/meetech%20(2).png)
 
