@@ -4,7 +4,8 @@ Welcome to meetech. This is a networking app that allows you to see events, mark
 
 https://meetech.up.railway.app/
 
-![Meetech header pic](https://github.com/RafaMR/Meetech.com/blob/master/public/images/meetech%20(2).png)
+![meetech](https://user-images.githubusercontent.com/54202438/217460759-3b9fca5e-7fb8-4fef-b212-6776d0f44a74.jpg)
+
 
 
 ## Views
